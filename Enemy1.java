@@ -9,33 +9,65 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy1 extends Actor
 {
     GifImage E1RunR = new GifImage("ERunR.gif");
-    int animation = 0;
+    GifImage E1HitR = new GifImage("EHit.gif");
+         
+    int enemy1Health = 2;
+    Boolean pauseState = false;
     
     public void act() 
     {
         movement();
-        kill();
+        takeDamage();       
+        setImage(E1RunR.getCurrentImage());
         
-        if(animation == 0){
-            setImage(E1RunR.getCurrentImage());
-        }
+        
     }
     
     public void movement()
     {
-        move(4);        
+        if(pauseState == false)
+        {
+            move(4);
+        }
+        else
+        {
+            move(0);
+        }
     }
     
-
-    
-    public void kill()
+    public void takeDamage()
     {
+        int currentX = getX();
+        
         Actor player;
-        player = getOneObjectAtOffset(0,0,Player.class);
-        if(player != null){
-            World world;
-            world = getWorld();
-            world.removeObject(player);
+        
+        World world;
+        world = getWorld();
+        
+        player = getOneObjectAtOffset(10,0,Player.class);
+        
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
+            if(player != null){
+                enemy1Health--;
+                
+                this.setLocation(currentX-200,275);
+                
+                pauseState = true;
+                int pauseCTR = 1000;
+                
+                while(pauseCTR > 1)
+                {
+                    pauseCTR--;
+             
+                }
+                pauseState = false;
+                if(enemy1Health == 0)
+                {
+                    world.removeObject(this);
+                }
+            
+            }
         }
+        
     }
 }

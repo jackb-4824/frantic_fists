@@ -6,5 +6,5 @@ comment1.target=void\ act()
 comment2.params=
 comment2.target=void\ movement()
 comment3.params=
-comment3.target=void\ kill()
+comment3.target=void\ takeDamage()
 numComments=4

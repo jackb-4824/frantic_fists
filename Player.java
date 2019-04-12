@@ -12,14 +12,44 @@ public class Player extends Actor
     GifImage pLeftImage = new GifImage("PunchL.gif");
     
     int animation = 1;
+    int playerHealth = 3;
     
     String key = Greenfoot.getKey();
     public void act() 
     {
-        if(animation == 1){
-            setImage(idleImage.getCurrentImage());
-        }
+        setImage(idleImage.getCurrentImage());
+        
         killLeft();
+        takeDamage();
+        
+    }
+    
+    public void takeDamage()
+    {
+        Actor enemy1;
+        Actor enemy2;
+        
+        
+        World world;
+        world = getWorld();
+        
+                
+        enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
+        enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
+        
+        if(enemy1 != null || enemy2 != null){
+            playerHealth--;
+            world.removeObject(enemy1);
+            
+            if(playerHealth == 0)
+            {
+                world.removeObject(this);
+                Greenfoot.stop();
+            }
+            
+        }
+        
+        
     }
     
     public void killLeft()
@@ -27,26 +57,16 @@ public class Player extends Actor
         Actor enemy1;
         Actor enemy2;
         
+        World world;
+        world = getWorld();
+        
+
         enemy1 = getOneObjectAtOffset(-50,0,Enemy1.class);
         enemy2 = getOneObjectAtOffset(-50,0,Enemy2.class);
-            
+        
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-            if(enemy1 != null){
-                World world;
-                world = getWorld();
-                world.removeObject(enemy1);
-            }
-            
-            if(enemy2 != null){
-                World world;
-                world = getWorld();
-                world.removeObject(enemy2);
-            }
-            
-            
             setImage(pLeftImage.getCurrentImage());
         }
-        animation = 1;
     }
     
 }
