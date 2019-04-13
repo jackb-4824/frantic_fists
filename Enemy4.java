@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Enemy4 here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Enemy4 extends Actor
 {
     GifImage E1RunR = new GifImage("E4RunR.gif");
@@ -19,17 +13,18 @@ public class Enemy4 extends Actor
     {
         movement();
         takeDamage();       
-        setImage(E1RunR.getCurrentImage());
     }
     
     public void movement()
     {
         if(direction.equals("right"))
         {
+            setImage(E1RunR.getCurrentImage());
             move(2);
         }
         else if(direction.equals("left"))
         {
+            setImage(E1RunL.getCurrentImage());
             move(-2);
         }
     }

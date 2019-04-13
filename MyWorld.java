@@ -55,17 +55,17 @@ public class MyWorld extends World
             }
         }
         
-        if (Greenfoot.getRandomNumber(1000) == 1) 
+        if (Greenfoot.getRandomNumber(1000) <= 3) 
         {
             if (getObjects(Enemy3.class).size() < 10) {  
                 addObject(new Enemy3(), 0, 275);  
             }
         }
         
-        if (Greenfoot.getRandomNumber(100) == 1) 
+        if (Greenfoot.getRandomNumber(1000) == 1) 
         {
             if (getObjects(Enemy4.class).size() < 10) {  
-                //addObject(new Enemy4(), 0, 275);  
+                addObject(new Enemy4(), 0, 275);  
             }
         }
     }

@@ -27,18 +27,17 @@ public class Player extends Actor
     
     public void takeDamage()
     {
-        Actor enemy1;
-        Actor enemy2;
-        
-        
+        Actor enemy1, enemy2, enemy3, enemy4;
         World world;
         world = getWorld();
         
-                
+        
         enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
         enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
+        enemy3 = getOneObjectAtOffset(0,0,Enemy3.class);
+        enemy4 = getOneObjectAtOffset(0,0,Enemy4.class);
         
-        if(enemy1 != null || enemy2 != null){
+        if(enemy1 != null){
             health--;
             world.removeObject(enemy1);
             
@@ -47,7 +46,39 @@ public class Player extends Actor
                 world.removeObject(this);
                 Greenfoot.stop();
             }
+        }
+        
+        if(enemy2 != null){
+            health--;
+            world.removeObject(enemy2);
             
+            if(health == 0)
+            {
+                world.removeObject(this);
+                Greenfoot.stop();
+            }
+        }
+        
+        if(enemy3 != null){
+            health--;
+            world.removeObject(enemy3);
+            
+            if(health == 0)
+            {
+                world.removeObject(this);
+                Greenfoot.stop();
+            }
+        }
+        
+        if(enemy4 != null){
+            health--;
+            world.removeObject(enemy4);
+            
+            if(health == 0)
+            {
+                world.removeObject(this);
+                Greenfoot.stop();
+            }
         }
         
         
