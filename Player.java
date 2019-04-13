@@ -8,36 +8,66 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    GifImage idleImage = new GifImage("Idle Left.gif");
-    GifImage pLeftImage = new GifImage("Punch Left.gif");
+    GifImage idleImage = new GifImage("IdleL.gif");
+    GifImage pLeftImage = new GifImage("PunchL.gif");
     
-    int animation = 0;
+    int animation = 1;
+    int playerHealth = 3;
+    int EnemiesLeft = 15;
     
     String key = Greenfoot.getKey();
     public void act() 
     {
-        if(animation == 0){
-            setImage(idleImage.getCurrentImage());
-        }
+        setImage(idleImage.getCurrentImage());
+        
         killLeft();
+        takeDamage();
+        
+    }
+    
+    public void takeDamage()
+    {
+        Actor enemy1;
+        Actor enemy2;
+        
+        
+        World world;
+        world = getWorld();
+        
+                
+        enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
+        enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
+        
+        if(enemy1 != null || enemy2 != null){
+            playerHealth--;
+            world.removeObject(enemy1);
+            
+            if(playerHealth == 0)
+            {
+                world.removeObject(this);
+                Greenfoot.setWorld(new GameOver());
+            }
+            
+        }
+        
+        
     }
     
     public void killLeft()
     {
         Actor enemy1;
+        Actor enemy2;
+        
+        World world;
+        world = getWorld();
+        
+
         enemy1 = getOneObjectAtOffset(-50,0,Enemy1.class);
-            
-        if(Greenfoot.isKeyDown("left")){
-            if(enemy1 != null){
-                World world;
-                world = getWorld();
-                world.removeObject(enemy1);
-            }
-            
-            animation = 1;
+        enemy2 = getOneObjectAtOffset(-50,0,Enemy2.class);
+        
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             setImage(pLeftImage.getCurrentImage());
         }
-        animation = 0;
     }
     
 }

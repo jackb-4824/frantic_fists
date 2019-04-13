@@ -1,23 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class Easy here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class Easy extends World
 {
-    PlayerHealth playerHealth = new PlayerHealth();
-     EnemyLeft enemiesLeft = new EnemyLeft();
+SCounter sCounter = new SCounter();
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class Easy.
      * 
      */
-    
-    
-    public MyWorld()
+    public Easy()
     {    
+        
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1);
         //GreenfootImage bg = new GreenfootImage("BG1.png");
@@ -27,14 +25,11 @@ public class MyWorld extends World
         prepare();
     }
     
-    public PlayerHealth getPH()
+    public SCounter getCounter()
     {
-        return playerHealth;  
+        return sCounter;
     }
-     public EnemyLeft getEL()
-    {
-        return enemiesLeft;  
-    }
+    
     public void act()
     {
         spawn();
@@ -45,7 +40,7 @@ public class MyWorld extends World
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
             if (getObjects(Enemy1.class).size() < 10) {  
-                //addObject(new Enemy1(), 0, 275);  
+                addObject(new Enemy1(), 0, 275);  
             }
         }
         
@@ -55,10 +50,10 @@ public class MyWorld extends World
                 //addObject(new Enemy2(), 0, 275);  
             }
         }
-        if (Greenfoot.getRandomNumber(1000) < 10) 
+        if (Greenfoot.getRandomNumber(1000) < 3) 
         {
             if (getObjects(Enemy3.class).size() < 10) {  
-                addObject(new Enemy3(), 0, 275);  
+                //addObject(new Enemy3(), 0, 275);  
             }
         }
         
@@ -70,12 +65,13 @@ public class MyWorld extends World
      */
     private void prepare()
     {
+        
         Player player = new Player();
         addObject(player,600,275);
 
-        
-        addObject(playerHealth,477,199);
+        //addObject(playerHealth,477,199);
+        //addObject(enemiesLeft,999,54);
        
-        addObject(enemiesLeft,999,54);
+        addObject(sCounter,996,32);
     }
 }

@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy1 here.
+ * Write a description of class Enemy3 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Enemy1 extends Actor
+public class Enemy3 extends Actor
 {
-    GifImage E1RunR = new GifImage("ERunR.gif");
-    GifImage E1HitR = new GifImage("EHit.gif");
+    GifImage E3RunR = new GifImage("E3RunR.gif");
+    GifImage E3HitR = new GifImage("EHit.gif");
          
     int enemy1Health = 2;
     Boolean pauseState = false;
@@ -18,7 +18,7 @@ public class Enemy1 extends Actor
     {
         movement();
         takeDamage();       
-        setImage(E1RunR.getCurrentImage());
+        setImage(E3RunR.getCurrentImage());
         
         
     }
@@ -34,6 +34,7 @@ public class Enemy1 extends Actor
             move(0);
         }
     }
+   
     
     public void takeDamage()
     {
@@ -50,7 +51,8 @@ public class Enemy1 extends Actor
             if(player != null){
                 enemy1Health--;
                 
-                this.setLocation(currentX -200,275);
+                this.setLocation(currentX +400,275);
+            
                 
                 pauseState = true;
                 int pauseCTR = 1000;
@@ -61,16 +63,17 @@ public class Enemy1 extends Actor
              
                 }
                 pauseState = false;
+                
+                
+         
                 if(enemy1Health == 0)
                 {
-                    Easy easy = (Easy)world;
-                    SCounter sCounter = easy.getCounter();
-                    sCounter.removeScore();
                     world.removeObject(this);
                 }
-            
+             
             }
         }
         
     }
 }
+
