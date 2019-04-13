@@ -1,17 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy1 here.
+ * Write a description of class Enemy3 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Enemy1 extends Actor
+public class Enemy3 extends Actor
 {
-    GifImage E1RunR = new GifImage("ERunR.gif");
+    GifImage E1RunR = new GifImage("E3RunR.gif");
     GifImage E1HitR = new GifImage("EHit.gif");
          
-    int enemy1Health = 2;
+    int enemy3Health = 3;
     Boolean pauseState = false;
     
     public void act() 
@@ -23,14 +23,7 @@ public class Enemy1 extends Actor
     
     public void movement()
     {
-        if(pauseState == false)
-        {
-            move(4);
-        }
-        else
-        {
-            move(0);
-        }
+        move(2);
     }
     
     public void takeDamage()
@@ -46,11 +39,11 @@ public class Enemy1 extends Actor
         
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
-                enemy1Health--;
+                enemy3Health--;
                 
                 this.setLocation(currentX-200,275);
 
-                if(enemy1Health == 0)
+                if(enemy3Health == 0)
                 {
                     world.removeObject(this);
                 }

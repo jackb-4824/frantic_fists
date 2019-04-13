@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+    Player player = new Player();
     PlayerHealth playerHealth = new PlayerHealth();
     /**
      * Constructor for objects of class MyWorld.
@@ -26,11 +27,13 @@ public class MyWorld extends World
         prepare();
     }
     
+    /*
     public PlayerHealth getPH()
     {
-        return playerHealth;  
+        // setImage(new GreenfootImage("Health : " + player.health, 30, Color.WHITE, Color.BLACK));
     }
-    
+    */
+   
     public void act()
     {
         spawn();
@@ -45,13 +48,26 @@ public class MyWorld extends World
             }
         }
         
-        if (Greenfoot.getRandomNumber(100) == 1) 
+        if (Greenfoot.getRandomNumber(1000) <= 5) 
         {
             if (getObjects(Enemy2.class).size() < 10) {  
-                //addObject(new Enemy2(), 0, 275);  
+                addObject(new Enemy2(), 0, 275);  
             }
         }
         
+        if (Greenfoot.getRandomNumber(1000) == 1) 
+        {
+            if (getObjects(Enemy3.class).size() < 10) {  
+                addObject(new Enemy3(), 0, 275);  
+            }
+        }
+        
+        if (Greenfoot.getRandomNumber(100) == 1) 
+        {
+            if (getObjects(Enemy4.class).size() < 10) {  
+                //addObject(new Enemy4(), 0, 275);  
+            }
+        }
     }
 
     /**
@@ -60,11 +76,7 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        Player player = new Player();
         addObject(player,600,275);
-
-        
-        
-        addObject(playerHealth,477,199);
+        addObject(playerHealth,600,350);
     }
 }

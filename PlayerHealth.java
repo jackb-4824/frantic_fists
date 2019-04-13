@@ -8,10 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class PlayerHealth extends Player
 {
-    
     public void act() 
     {
-        setImage(new GreenfootImage("Health : " + playerHealth, 30, Color.WHITE, Color.BLACK));
+        World world;
+        world = getWorld();
+        
     }
 
 }

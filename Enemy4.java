@@ -1,18 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy1 here.
+ * Write a description of class Enemy4 here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Enemy1 extends Actor
+public class Enemy4 extends Actor
 {
-    GifImage E1RunR = new GifImage("ERunR.gif");
+    GifImage E1RunR = new GifImage("E4RunR.gif");
+    GifImage E1RunL = new GifImage("E4RunL.gif");
     GifImage E1HitR = new GifImage("EHit.gif");
          
-    int enemy1Health = 2;
-    Boolean pauseState = false;
+    int enemy3Health = 3;
+    String direction = "right";
     
     public void act() 
     {
@@ -23,13 +24,13 @@ public class Enemy1 extends Actor
     
     public void movement()
     {
-        if(pauseState == false)
+        if(direction.equals("right"))
         {
-            move(4);
+            move(2);
         }
-        else
+        else if(direction.equals("left"))
         {
-            move(0);
+            move(-2);
         }
     }
     
@@ -46,11 +47,14 @@ public class Enemy1 extends Actor
         
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
-                enemy1Health--;
+                enemy3Health--;
                 
-                this.setLocation(currentX-200,275);
-
-                if(enemy1Health == 0)
+                
+                this.setLocation(1000,275);
+                direction = "left";
+                setImage(E1RunL.getCurrentImage());
+                
+                if(enemy3Health == 0)
                 {
                     world.removeObject(this);
                 }
@@ -58,5 +62,17 @@ public class Enemy1 extends Actor
             }
         }
         
+        
+        if(Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("a")){
+            if(player != null){
+                enemy3Health--;
+                
+                if(enemy3Health == 0)
+                {
+                    world.removeObject(this);
+                }
+            
+            }
+        }
     }
 }
