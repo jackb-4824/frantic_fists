@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #BlueJ class context
 comment0.target=Player
 comment0.text=\n\ Write\ a\ description\ of\ class\ Player\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
@@ -8,3 +9,15 @@ comment2.target=void\ takeDamage()
 comment3.params=
 comment3.target=void\ killLeft()
 numComments=4
+=======
+#BlueJ class context
+comment0.target=Player
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=
+comment1.target=void\ act()
+comment2.params=
+comment2.target=void\ takeDamage()
+comment3.params=
+comment3.target=void\ killLeft()
+numComments=4
+>>>>>>> Kyle's-Branch

@@ -8,8 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
+<<<<<<< HEAD
     Player player = new Player();
     PlayerHealth playerHealth = new PlayerHealth();
+=======
+    PlayerHealth playerHealth = new PlayerHealth();
+     EnemyLeft enemiesLeft = new EnemyLeft();
+>>>>>>> Kyle's-Branch
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -27,6 +32,7 @@ public class MyWorld extends World
         prepare();
     }
     
+<<<<<<< HEAD
     /*
     public PlayerHealth getPH()
     {
@@ -34,6 +40,16 @@ public class MyWorld extends World
     }
     */
    
+=======
+    public PlayerHealth getPH()
+    {
+        return playerHealth;  
+    }
+     public EnemyLeft getEL()
+    {
+        return enemiesLeft;  
+    }
+>>>>>>> Kyle's-Branch
     public void act()
     {
         spawn();
@@ -41,9 +57,10 @@ public class MyWorld extends World
     
     public void spawn()
     {
-        if (Greenfoot.getRandomNumber(100) == 1) 
+        if (Greenfoot.getRandomNumber(1000) < 10) 
         {
             if (getObjects(Enemy1.class).size() < 10) {  
+<<<<<<< HEAD
                 addObject(new Enemy1(), 0, 275);  
             }
         }
@@ -66,8 +83,25 @@ public class MyWorld extends World
         {
             if (getObjects(Enemy4.class).size() < 10) {  
                 addObject(new Enemy4(), 0, 275);  
+=======
+                //addObject(new Enemy1(), 0, 275);  
+>>>>>>> Kyle's-Branch
             }
         }
+        
+        if (Greenfoot.getRandomNumber(1000) < 5) 
+        {
+            if (getObjects(Enemy2.class).size() < 10) {  
+                //addObject(new Enemy2(), 0, 275);  
+            }
+        }
+        if (Greenfoot.getRandomNumber(1000) < 10) 
+        {
+            if (getObjects(Enemy3.class).size() < 10) {  
+                addObject(new Enemy3(), 0, 275);  
+            }
+        }
+        
     }
 
     /**
@@ -76,7 +110,17 @@ public class MyWorld extends World
      */
     private void prepare()
     {
+<<<<<<< HEAD
         addObject(player,600,275);
         addObject(playerHealth,600,350);
+=======
+        Player player = new Player();
+        addObject(player,600,275);
+
+        
+        addObject(playerHealth,477,199);
+       
+        addObject(enemiesLeft,999,54);
+>>>>>>> Kyle's-Branch
     }
 }
