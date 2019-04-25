@@ -19,11 +19,6 @@ public class Enemy1 extends Actor
         movement();
         takeDamage();       
         setImage(E1RunR.getCurrentImage());
-<<<<<<< HEAD
-=======
-        
-        
->>>>>>> Kyle's-Branch
     }
     
     public void movement()
@@ -52,13 +47,11 @@ public class Enemy1 extends Actor
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
                 enemy1Health--;
-                
-<<<<<<< HEAD
+              	
                 this.setLocation(currentX-200,275);
 
                 if(enemy1Health == 0)
                 {
-=======
                 this.setLocation(currentX -200,275);
                 
                 pauseState = true;
@@ -75,7 +68,6 @@ public class Enemy1 extends Actor
                     Easy easy = (Easy)world;
                     SCounter sCounter = easy.getCounter();
                     sCounter.removeScore();
->>>>>>> Kyle's-Branch
                     world.removeObject(this);
                 }
             
