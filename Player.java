@@ -10,9 +10,8 @@ public class Player extends Actor
 {
     GifImage idleImage = new GifImage("IdleL.gif");
     GifImage pLeftImage = new GifImage("PunchL.gif");
-    
+    GifImage pRightImage = new GifImage("PunchR.gif");
     boolean hitplayer = false;
-    
     int animation = 1;
     int playerHealth = 3;
     int EnemiesLeft = 15;
@@ -41,19 +40,49 @@ public class Player extends Actor
         enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
         enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
         
-        if(enemy1 != null || enemy2 != null){
-            playerHealth--;
+        if(enemy1 != null){
+            playerHealth--;hpbars.loseHealth();
             world.removeObject(enemy1);
-            hpbars.loseHealth();
+            
+            if(playerHealth == 0)
+            {
+                world.removeObject(this);
+				Greenfoot.setWorld(new GameOver());
+            }
+        }
+        
+        if(enemy2 != null){
+            playerHealth--;hpbars.loseHealth();
+            world.removeObject(enemy2);
+            
+            if(playerHealth == 0)
+            {
+                world.removeObject(this);
+				Greenfoot.setWorld(new GameOver());
+            }
+        }
+        
+        if(enemy3 != null){
+            playerHealth--;hpbars.loseHealth();
+            world.removeObject(enemy3);
+            
             if(playerHealth == 0)
             {
                 world.removeObject(this);
                 Greenfoot.setWorld(new GameOver());
-            }  
-            
+            }
         }
         
-        
+        if(enemy4 != null){
+            playerHealth--;hpbars.loseHealth();
+            world.removeObject(enemy4);
+            
+            if(playerHealth == 0)
+            {
+                world.removeObject(this);
+				Greenfoot.setWorld(new GameOver());
+            }
+        }
     }
     
     public void killLeft()

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy2 extends Actor
 {
-   GifImage E2RunR = new GifImage("E2RunR.gif");
+   	GifImage E2RunR = new GifImage("E2RunR.gif");
     GifImage E2HitR = new GifImage("EHit.gif");
          
     int enemy1Health = 1;
@@ -64,15 +64,7 @@ public class Enemy2 extends Actor
                 {
                     world.removeObject(this);
                 }
-            
             }
         }
-<<<<<<< HEAD
-	
 	}
 }
-=======
-        
-    }
-}
->>>>>>> Kyle's-Branch
