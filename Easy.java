@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Easy extends World
 {
-SCounter sCounter = new SCounter();
+    SCounter sCounter = new SCounter();
+    HPBars hpbars = new HPBars();
     /**
      * Constructor for objects of class Easy.
      * 
@@ -18,7 +19,6 @@ SCounter sCounter = new SCounter();
         
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1);
-        
         GreenfootImage bg = new GreenfootImage("TestBG.png");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
@@ -30,6 +30,12 @@ SCounter sCounter = new SCounter();
     {
         return sCounter;
     }
+    
+    public HPBars getHPBars()
+    {
+        return hpbars;
+    }
+    
     
     public void act()
     {
@@ -48,7 +54,7 @@ SCounter sCounter = new SCounter();
         if (Greenfoot.getRandomNumber(1000) < 5) 
         {
             if (getObjects(Enemy2.class).size() < 10) {  
-                addObject(new Enemy2(), 0, 275);  
+                //addObject(new Enemy2(), 0, 275);  
             }
         }
         if (Greenfoot.getRandomNumber(1000) < 3) 
@@ -69,6 +75,7 @@ SCounter sCounter = new SCounter();
         
         Player player = new Player();
         addObject(player,600,275);
+        addObject(hpbars, 200, 40);
 
         //addObject(playerHealth,477,199);
         //addObject(enemiesLeft,999,54);
