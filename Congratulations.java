@@ -16,14 +16,21 @@ public class Congratulations extends World
     public Congratulations()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1200, 400, 1); 
+        super(1200, 400, 1);
+        
+        GreenfootImage bg = new GreenfootImage("Congratulations.png");
+        bg.scale(getWidth(), getHeight());
+        setBackground(bg);
+        
             prepare();
     }
-       private void prepare()
+       
+    private void prepare()
     {
         Winner winner = new Winner();
         addObject(winner,363,154);
-       
+
+        
     }
     
     public void act()

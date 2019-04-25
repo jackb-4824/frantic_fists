@@ -18,9 +18,10 @@ SCounter sCounter = new SCounter();
         
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1);
-        //GreenfootImage bg = new GreenfootImage("BG1.png");
-        //bg.scale(getWidth(), getHeight());
-        //setBackground(bg);
+        
+        GreenfootImage bg = new GreenfootImage("TestBG.png");
+        bg.scale(getWidth(), getHeight());
+        setBackground(bg);
         
         prepare();
     }
@@ -47,7 +48,7 @@ SCounter sCounter = new SCounter();
         if (Greenfoot.getRandomNumber(1000) < 5) 
         {
             if (getObjects(Enemy2.class).size() < 10) {  
-                //addObject(new Enemy2(), 0, 275);  
+                addObject(new Enemy2(), 0, 275);  
             }
         }
         if (Greenfoot.getRandomNumber(1000) < 3) 
