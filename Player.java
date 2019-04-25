@@ -10,6 +10,7 @@ public class Player extends Actor
 {
     GifImage idleImage = new GifImage("IdleL.gif");
     GifImage pLeftImage = new GifImage("PunchL.gif");
+    GifImage pRightImage = new GifImage("PunchR.gif");
 
     
     int animation = 1;
@@ -39,10 +40,10 @@ public class Player extends Actor
         enemy4 = getOneObjectAtOffset(0,0,Enemy4.class);
         
         if(enemy1 != null){
-            health--;
+            playerHealth--;
             world.removeObject(enemy1);
             
-            if(health == 0)
+            if(playerHealth == 0)
             {
                 world.removeObject(this);
 				Greenfoot.setWorld(new GameOver());
@@ -50,10 +51,10 @@ public class Player extends Actor
         }
         
         if(enemy2 != null){
-            health--;
+            playerHealth--;
             world.removeObject(enemy2);
             
-            if(health == 0)
+            if(playerHealth == 0)
             {
                 world.removeObject(this);
 				Greenfoot.setWorld(new GameOver());
@@ -61,10 +62,10 @@ public class Player extends Actor
         }
         
         if(enemy3 != null){
-            health--;
+            playerHealth--;
             world.removeObject(enemy3);
             
-            if(health == 0)
+            if(playerHealth == 0)
             {
                 world.removeObject(this);
                 Greenfoot.setWorld(new GameOver());
@@ -72,10 +73,10 @@ public class Player extends Actor
         }
         
         if(enemy4 != null){
-            health--;
+            playerHealth--;
             world.removeObject(enemy4);
             
-            if(health == 0)
+            if(playerHealth == 0)
             {
                 world.removeObject(this);
 				Greenfoot.setWorld(new GameOver());

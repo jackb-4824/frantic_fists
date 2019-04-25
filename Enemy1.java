@@ -47,7 +47,7 @@ public class Enemy1 extends Actor
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
                 enemy1Health--;
-              	
+                
                 this.setLocation(currentX-200,275);
 
                 if(enemy1Health == 0)
@@ -70,9 +70,8 @@ public class Enemy1 extends Actor
                     sCounter.removeScore();
                     world.removeObject(this);
                 }
-            
             }
         }
-        
     }
+}
 }
