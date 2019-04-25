@@ -41,7 +41,8 @@ public class Player extends Actor
         enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
         
         if(enemy1 != null){
-            playerHealth--;hpbars.loseHealth();
+            playerHealth--;
+			hpbars.loseHealth();
             world.removeObject(enemy1);
             
             if(playerHealth == 0)
@@ -52,7 +53,8 @@ public class Player extends Actor
         }
         
         if(enemy2 != null){
-            playerHealth--;hpbars.loseHealth();
+            playerHealth--;
+			hpbars.loseHealth();
             world.removeObject(enemy2);
             
             if(playerHealth == 0)
@@ -63,7 +65,8 @@ public class Player extends Actor
         }
         
         if(enemy3 != null){
-            playerHealth--;hpbars.loseHealth();
+            playerHealth--;
+			hpbars.loseHealth();
             world.removeObject(enemy3);
             
             if(playerHealth == 0)
@@ -74,7 +77,8 @@ public class Player extends Actor
         }
         
         if(enemy4 != null){
-            playerHealth--;hpbars.loseHealth();
+            playerHealth--;
+			hpbars.loseHealth();
             world.removeObject(enemy4);
             
             if(playerHealth == 0)
