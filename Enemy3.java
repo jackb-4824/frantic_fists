@@ -1,24 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy3 here.
+ * An older (?) implementation of the Warper.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 0.0.1
  */
 public class Enemy3 extends Actor
 {
-    GifImage E3RunR = new GifImage("E3RunR.gif");
-    GifImage E3HitR = new GifImage("EHit.gif");
+    GifImage runR = new GifImage("E3RunR.gif");
+//	GifImage runL = new GifImage("E3RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.
+//	GifImage hitR = new GifImage("EHitR.gif");		// This is for the hit detection. Unimplemented. Generic.
+//	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
          
-    int enemy1Health = 2;
-    Boolean pauseState = false;
+    int health = 2;
+//	boolean direction = false;
+    boolean pauseState = false;
     
     public void act() 
     {
         movement();
         takeDamage();       
-        setImage(E3RunR.getCurrentImage());
+        setImage(runR.getCurrentImage());
     }
     
     public void movement()
@@ -46,7 +49,7 @@ public class Enemy3 extends Actor
         
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
-                enemy1Health--;
+                health--;
                 this.setLocation(currentX +400,275);
             
                 pauseState = true;
@@ -59,7 +62,7 @@ public class Enemy3 extends Actor
                 }
                 pauseState = false;
                 
-                if(enemy1Health == 0)
+                if(health == 0)
                 {
                     world.removeObject(this);
                 }

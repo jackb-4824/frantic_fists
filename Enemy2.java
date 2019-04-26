@@ -1,24 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy2 here.
+ * The Glass Cannon enemy.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 0.1.0
  */
 public class Enemy2 extends Actor
 {
-   	GifImage E2RunR = new GifImage("E2RunR.gif");
-    GifImage E2HitR = new GifImage("EHit.gif");
+   	GifImage runR = new GifImage("E2RunR.gif");
+//	GifImage runL = new GifImage("E2RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.	
+//	GifImage hitR = new GifImage("EHitR.gif");		// This is for the hit detection. Unimplemented. Generic.
+//	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
          
-    int enemy1Health = 1;
-    Boolean pauseState = false;
+    int health = 1;
+//	boolean direction = false;
+    boolean pauseState = false;
     
     public void act() 
     {
         movement();
         takeDamage();       
-        setImage(E2RunR.getCurrentImage());
+        setImage(runR.getCurrentImage());
     }
     
     public void movement()
@@ -47,7 +50,7 @@ public class Enemy2 extends Actor
         
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
-                enemy1Health--;
+                health--;
                 
                 this.setLocation(currentX-200,275);
                 
@@ -60,7 +63,7 @@ public class Enemy2 extends Actor
              
                 }
                 pauseState = false;
-                if(enemy1Health == 0)
+                if(health == 0)
                 {
                     world.removeObject(this);
                 }

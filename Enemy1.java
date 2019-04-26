@@ -1,24 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy1 here.
+ * The basic enemy.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 0.1.0
  */
 public class Enemy1 extends Actor
 {
-    GifImage E1RunR = new GifImage("ERunR.gif");
-    GifImage E1HitR = new GifImage("EHit.gif");
-         
-    int enemy1Health = 2;
-    Boolean pauseState = false;
+    GifImage runR = new GifImage("ERunR.gif");
+//	GifImage runL = new GifImage("E1RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.
+//  GifImage hitR = new GifImage("EHit.gif");		// This is for the hit detection. Unimplemented. Generic.
+//	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
+
+    int health = 2;
+//	boolean direction = false;
+    boolean pauseState = false;
     
     public void act() 
     {
         movement();
         takeDamage();       
-        setImage(E1RunR.getCurrentImage());
+        setImage(runR.getCurrentImage());
     }
     
     public void movement()
@@ -46,11 +49,11 @@ public class Enemy1 extends Actor
         
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
-                enemy1Health--;
+                health--;
                 
                 this.setLocation(currentX-200,275);
 
-                if(enemy1Health == 0)
+                if(health == 0)
                 {
                 this.setLocation(currentX -200,275);
                 
@@ -63,7 +66,7 @@ public class Enemy1 extends Actor
              
                 }
                 pauseState = false;
-                if(enemy1Health == 0)
+                if(health == 0)
                 {
                     Easy easy = (Easy)world;
                     SCounter sCounter = easy.getCounter();
