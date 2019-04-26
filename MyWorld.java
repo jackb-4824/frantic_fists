@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * The test world!
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author everyone
+ * @version constantly changing.
  */
 public class MyWorld extends World
 {
@@ -25,20 +25,12 @@ public class MyWorld extends World
         
         prepare();
     }
-    
-
-    /*
-    public PlayerHealth getPH()
-    {
-        // setImage(new GreenfootImage("Health : " + player.health, 30, Color.WHITE, Color.BLACK));
-    }
-    */
    
     public PlayerHealth getPH()
     {
         return playerHealth;  
     }
-     public EnemyLeft getEL()
+    public EnemyLeft getEL()
     {
         return enemiesLeft;  
     }

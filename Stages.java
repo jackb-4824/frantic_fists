@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Stages here.
+ * The Level Select world (hence Stages)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kyle 
+ * @version 0.0.1
  */
 public class Stages extends World
 {
@@ -15,7 +15,6 @@ public class Stages extends World
      */
     public Stages()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1);
         
         GreenfootImage bg = new GreenfootImage("LevelSelect.PNG");
@@ -41,5 +40,7 @@ public class Stages extends World
         if (Greenfoot.isKeyDown("1"))
         Greenfoot.setWorld(new Easy());
         
+		if (Greenfoot.isKeyDown("0"))
+		Greenfoot.setWorld(new MyWorld());
     }
 }
