@@ -54,7 +54,7 @@ public class Enemy4 extends Actor
                 
                 
                 this.setLocation(1000,275);
-                direction = "left";
+                direction = true;
                 setImage(runL.getCurrentImage());
                 
                 if(health == 0)
