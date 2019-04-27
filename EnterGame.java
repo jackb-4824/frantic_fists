@@ -1,8 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class EnterGame here.
- * 
+ * This is the intro screen to Frantic Fists.
+ * In project.greeenfoot, this should be world.lastInstantiated
+ *
  * @author (your name) 
  * @version (a version number or a date)
  */
