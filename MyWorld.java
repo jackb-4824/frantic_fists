@@ -71,19 +71,6 @@ public class MyWorld extends World
             }
         }
         
-        if (Greenfoot.getRandomNumber(1000) < 5) 
-        {
-            if (getObjects(Enemy2.class).size() < 10) {  
-                //addObject(new Enemy2(), 0, 275);  
-            }
-        }
-        if (Greenfoot.getRandomNumber(1000) < 10) 
-        {
-            if (getObjects(Enemy3.class).size() < 10) {  
-                addObject(new Enemy3(), 0, 275);  
-            }
-        }
-        
     }
 
     /**
