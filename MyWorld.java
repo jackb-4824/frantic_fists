@@ -8,7 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class MyWorld extends World
 {
-    PlayerHealth playerHealth = new PlayerHealth();
     EnemyLeft enemiesLeft = new EnemyLeft();
 	
     /**
@@ -26,10 +25,6 @@ public class MyWorld extends World
         prepare();
     }
    
-    public PlayerHealth getPH()
-    {
-        return playerHealth;  
-    }
     public EnemyLeft getEL()
     {
         return enemiesLeft;  
@@ -81,7 +76,6 @@ public class MyWorld extends World
     {
         Player player = new Player();
         addObject(player,600,275);
-        addObject(playerHealth,477,199);
        
         addObject(enemiesLeft,999,54);
 

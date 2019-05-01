@@ -2,9 +2,11 @@ import greenfoot.*;
 
 public class qasmoke extends World
 {
-	PlayerHealth playerHealth = new PlayerHealth();
+	Player player = new Player();
 	EnemyLeft counterEnemiesRemaining = new EnemyLeft();
-	private boolean spawningEnabled = true;
+	HPBars hpbars = new HPBars();
+	private int playerHealthAsOfPreviousTick = 0;
+	private boolean spawningEnabled = false;
 	
 	public qasmoke()
 	{
@@ -14,23 +16,33 @@ public class qasmoke extends World
 	
 	private void prepare()
 	{
-		Player player = new Player();
+
 		addObject(player, 600, 275);
-		addObject(playerHealth, 477, 199);
-		
+		playerHealthAsOfPreviousTick = player.getHealth();
+		addObject(hpbars, 200, 40);
 		addObject(counterEnemiesRemaining, 999, 54);
 	}
 	
 	public void act()
 	{
+		updateGameState();
 		checkForKeypresses();
 		if (spawningEnabled) spawn();
 		
 	}
 	
-	public void checkForKeypresses()
+	private void updateGameState()
 	{
-		if(Greenfoot.isKeyDown("~"))
+		if(player.getHealth() < playerHealthAsOfPreviousTick)
+		{
+			playerHealthAsOfPreviousTick = player.getHealth();
+			hpbars.loseHealth();
+		}
+	}
+	
+	private void checkForKeypresses()
+	{
+		if(Greenfoot.isKeyDown("`"))
 		{
 			spawningEnabled = !spawningEnabled; 
 		}
@@ -70,15 +82,9 @@ public class qasmoke extends World
         }
         
     }
-		
-	public PlayerHealth getPH()	// this lets us return the world's PlayerHealth to actors
-	{
-		return playerHealth;
-	}
 	
 	public EnemyLeft getEL()	// like getPH(), but for the enemies remaining
 	{
 		return counterEnemiesRemaining;
 	}
-	
 }

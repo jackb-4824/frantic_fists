@@ -40,7 +40,7 @@ public class Stages extends World
         if (Greenfoot.isKeyDown("1"))
         Greenfoot.setWorld(new Easy());
         
-//	if (Greenfoot.isKeyDown("0"))
-//	Greenfoot.setWorld(new MyWorld());
+		if (Greenfoot.isKeyDown("0"))
+		Greenfoot.setWorld(new qasmoke());
     }
 }
