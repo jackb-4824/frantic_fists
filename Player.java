@@ -30,11 +30,8 @@ public class Player extends Actor
     {
         Actor enemy1, enemy2, enemy3, enemy4;
         
-        World world;
-        world = getWorld();
-        Easy easy = (Easy)world;
-        HPBars hpbars = easy.getHPBars();
-        
+        World world = getWorld();
+
         enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
         enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
         enemy3 = getOneObjectAtOffset(0,0,Enemy3.class);
@@ -42,7 +39,6 @@ public class Player extends Actor
         
         if(enemy1 != null){
             playerHealth--;
-			hpbars.loseHealth();
             world.removeObject(enemy1);
             
             if(playerHealth == 0)
@@ -54,7 +50,6 @@ public class Player extends Actor
         
         if(enemy2 != null){
             playerHealth--;
-			hpbars.loseHealth();
             world.removeObject(enemy2);
             
             if(playerHealth == 0)
@@ -66,7 +61,6 @@ public class Player extends Actor
         
         if(enemy3 != null){
             playerHealth--;
-			hpbars.loseHealth();
             world.removeObject(enemy3);
             
             if(playerHealth == 0)
@@ -78,7 +72,6 @@ public class Player extends Actor
         
         if(enemy4 != null){
             playerHealth--;
-			hpbars.loseHealth();
             world.removeObject(enemy4);
             
             if(playerHealth == 0)
@@ -106,4 +99,8 @@ public class Player extends Actor
         }
     }
     
+    public int getHealth()
+    {
+        return playerHealth;
+    }
 }
