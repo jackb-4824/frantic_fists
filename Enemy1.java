@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy1 extends Actor
 {
     GifImage runR = new GifImage("ERunR.gif");
-//	GifImage runL = new GifImage("E1RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.
-//  GifImage hitR = new GifImage("EHit.gif");		// This is for the hit detection. Unimplemented. Generic.
-//	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
+//  GifImage runL = new GifImage("E1RunL.gif");     // This is (hopefully) for the swarm spawning. Unimplemented.
+//  GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
+//  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
-//	boolean direction = false;
+//  boolean direction = false;
     boolean pauseState = false;
     
     public void act() 
@@ -50,7 +50,7 @@ public class Enemy1 extends Actor
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
             if(player != null){
                 health--;
-                
+                Greenfoot.playSound("sharpPunch.wav");  //first punch
                 this.setLocation(currentX-200,275);
 
                 if(health == 0)
@@ -68,7 +68,8 @@ public class Enemy1 extends Actor
                 pauseState = false;
                 if(health == 0)
                 {
-                    if (Easy.class.isInstance(getWorld()))
+                    Greenfoot.playSound("strongPunch.wav"); //death sound
+        if (Easy.class.isInstance(getWorld()))
         {
             Easy cWorld = (Easy)world;
             SCounter sCounter = cWorld.getCounter();

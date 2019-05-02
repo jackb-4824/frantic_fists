@@ -11,7 +11,7 @@ public class SCounter extends Actor
     int EnemiesLeft = 15;
     public void act() 
     {
-        setImage(new GreenfootImage("Enemies Left : " + EnemiesLeft, 25, Color.BLACK, Color.WHITE));
+        setImage(new GreenfootImage("" + EnemiesLeft, 25, Color.WHITE, null));
         if(EnemiesLeft==0)
         {
             Greenfoot.setWorld(new Congratulations());

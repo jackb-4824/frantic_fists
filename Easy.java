@@ -23,6 +23,8 @@ public class Easy extends World
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
         
+        
+        
         prepare();
     }
     
@@ -72,14 +74,26 @@ public class Easy extends World
      */
     private void prepare()
     {
-        
+        GreenfootImage scoreImage = new GreenfootImage("Score.png");
+        GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG");
         Player player = new Player();
+
         addObject(player,600,275);
-        addObject(hpbars, 200, 40);
+        addObject(hpbars, 630, 355);
 
         //addObject(playerHealth,477,199);
         //addObject(enemiesLeft,999,54);
+
+        //Enemies Reamining
+        getBackground().drawImage(ERImage, 900, 32);
+        addObject(sCounter,1035,71);
+        //Enemies Reamining
+
+        //Score
+        getBackground().drawImage(scoreImage, 700, 32);
+        //addObject(sCounter,1035,71);
+        //Enemies Reamining
+
        
-        addObject(sCounter,996,32);
     }
 }
