@@ -1,3 +1,5 @@
+
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -66,6 +68,10 @@ public class Player extends Actor
         if(enemy1 != null){
             playerHealth--;
                 hpbars.loseHealth();
+            
+            Easy cWorld = (Easy)world;
+            SCCounter obj = cWorld.getCounter1();
+            obj.combobreak();
             
             world.removeObject(enemy1);
             
