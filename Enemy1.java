@@ -14,9 +14,14 @@ public class Enemy1 extends Actor
 //	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
-//	boolean direction = false;
+	boolean direction = false;
     boolean pauseState = false;
-    
+	
+	public void Enemy1(boolean d)
+	{
+		this.direction = d;
+	}
+	
     public void act() 
     {
         movement();
@@ -26,14 +31,18 @@ public class Enemy1 extends Actor
     
     public void movement()
     {
-        if(pauseState == false)
+        if(!pauseState || !direction)
         {
             move(4);
         }
-        else
+        else if (!pauseState || direction)
         {
-            move(0);
+            move(-4);
         }
+		else
+		{
+			move(0);
+		}
     }
     
     public void takeDamage()

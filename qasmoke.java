@@ -7,6 +7,7 @@ public class qasmoke extends World
 	HPBars hpbars = new HPBars();
 	private int playerHealthAsOfPreviousTick = 0;
 	private boolean spawningEnabled = false;
+	private boolean preferredDirection = false;
 	
 	public qasmoke()
 	{
@@ -42,11 +43,19 @@ public class qasmoke extends World
 	
 	private void checkForKeypresses()
 	{
-		if(Greenfoot.isKeyDown("`"))
-		{
+		if(Greenfoot.isKeyDown("F12"))
 			spawningEnabled = !spawningEnabled; 
-		}
 		
+		if(Greenfoot.isKeyDown("F11"))
+			preferredDirection = !preferredDirection;
+		
+		if(Greenfoot.isKeyDown("1"))
+		{
+			if(!preferredDirection)
+            	addObject(new Enemy1(), 0, 275);
+			if(preferredDirection)
+				addObject(new Enemy1(preferredDirection), 1200, 275);
+		}
 		// TODO: Implement functionality to just press keys to manually force a guaranteed spawn
 	}
 	
@@ -54,8 +63,11 @@ public class qasmoke extends World
     {
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
-            if (getObjects(Enemy1.class).size() < 10) {  
-                addObject(new Enemy1(), 0, 275);  
+            if (getObjects(Enemy1.class).size() < 10) {
+				if(!preferredDirection)
+                	addObject(new Enemy1(), 0, 275);
+				if(preferredDirection)
+					addObject(new Enemy1(preferredDirection), 1200, 275);
             }
         }
         

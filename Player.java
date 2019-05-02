@@ -26,33 +26,37 @@ public class Player extends Actor
         
     }
     
+	public int getHealth()
+	{
+		return playerHealth;
+	}
+	
     public void takeDamage()
     {
         Actor enemy1, enemy2, enemy3, enemy4;
         
-        World world;
-        world = getWorld();
+        World world = getWorld();
         
         HPBars hpbars = null;
                
-        if (Easy.class.isInstance(getWorld()))
+        if (world instanceof Easy)
         {
             Easy cWorld = (Easy)world;
             hpbars = cWorld.getHPBars();
         }
         
-        else if (Medium.class.isInstance(getWorld()))
+        else if (world instanceof Medium)
         {
             Medium cWorld = (Medium)world;
             hpbars = cWorld.getHPBars();
         }
         
-        else if (Hard.class.isInstance(getWorld()))
+        else if (world instanceof Hard)
         {
             Hard cWorld = (Hard)world;
             hpbars = cWorld.getHPBars();
         }
-        else if (Endless.class.isInstance(getWorld()))
+        else if (world instanceof Endless)
         {
             Endless cWorld = (Endless)world;
             hpbars = cWorld.getHPBars();
