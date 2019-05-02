@@ -1,25 +1,25 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Easy here.
+ * Write a description of class Medium here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Easy extends World
+public class Medium extends World
 {
     SCounter sCounter = new SCounter();
     HPBars hpbars = new HPBars();
     /**
-     * Constructor for objects of class Easy.
+     * Constructor for objects of class Medium.
      * 
      */
-    public Easy()
+    public Medium()
     {    
         
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1);
-        GreenfootImage bg = new GreenfootImage("TestBG.png");
+        GreenfootImage bg = new GreenfootImage("BG2.png");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
         

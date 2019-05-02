@@ -68,10 +68,39 @@ public class Enemy1 extends Actor
                 pauseState = false;
                 if(health == 0)
                 {
-                    Easy easy = (Easy)world;
-                    SCounter sCounter = easy.getCounter();
-                    sCounter.removeScore();
+                    if (Easy.class.isInstance(getWorld()))
+        {
+            Easy cWorld = (Easy)world;
+            SCounter sCounter = cWorld.getCounter();
+            sCounter.removeScore();
                     world.removeObject(this);
+        }
+        
+        else if (Medium.class.isInstance(getWorld()))
+        {
+            Medium cWorld = (Medium)world;
+            SCounter sCounter = cWorld.getCounter();
+            sCounter.removeScore();
+                    world.removeObject(this);
+        }
+        
+        else if (Hard.class.isInstance(getWorld()))
+        {
+            Hard cWorld = (Hard)world;
+            SCounter sCounter = cWorld.getCounter();;
+            sCounter.removeScore();
+                    world.removeObject(this);
+        }
+        else if (Endless.class.isInstance(getWorld()))
+        {
+            Endless cWorld = (Endless)world;
+            SCounter sCounter = cWorld.getCounter();
+             sCounter.removeScore();
+                    world.removeObject(this);
+        }
+                    
+                    //SCounter sCounter = easy.getCounter();
+                   
                 }
             }
         }

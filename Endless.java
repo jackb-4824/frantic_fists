@@ -1,20 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Easy here.
+ * Write a description of class Endless here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Easy extends World
+public class Endless extends World
 {
     SCounter sCounter = new SCounter();
     HPBars hpbars = new HPBars();
     /**
-     * Constructor for objects of class Easy.
+     * Constructor for objects of class Endless.
      * 
      */
-    public Easy()
+    public Endless()
     {    
         
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.

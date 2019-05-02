@@ -40,7 +40,17 @@ public class Stages extends World
         if (Greenfoot.isKeyDown("1"))
         Greenfoot.setWorld(new Easy());
         
-//	if (Greenfoot.isKeyDown("0"))
-//	Greenfoot.setWorld(new MyWorld());
+    {   if (Greenfoot.isKeyDown("2"))
+        Greenfoot.setWorld(new Medium());
+    }
+    {   if (Greenfoot.isKeyDown("3"))
+        Greenfoot.setWorld(new Hard());
+    }
+    {   if (Greenfoot.isKeyDown("4"))
+        Greenfoot.setWorld(new Endless());
+    }
+    {   if (Greenfoot.isKeyDown("5"))
+        Greenfoot.setWorld(new HELPMe());
+    }
     }
 }
