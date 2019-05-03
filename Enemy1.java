@@ -1,4 +1,4 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+    import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * The basic enemy.
@@ -9,19 +9,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy1 extends Actor
 {
     GifImage runR = new GifImage("ERunR.gif");
-//	GifImage runL = new GifImage("E1RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.
-//  GifImage hitR = new GifImage("EHit.gif");		// This is for the hit detection. Unimplemented. Generic.
-//	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
+//  GifImage runL = new GifImage("E1RunL.gif");     // This is (hopefully) for the swarm spawning. Unimplemented.
+//  GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
+//  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
-	boolean direction = false;
+    boolean direction = false;
     boolean pauseState = false;
-	
-	public void Enemy1(boolean d)
-	{
-		this.direction = d;
-	}
-	
+    
+    public Enemy1()
+    {
+        
+    }
+    public Enemy1(boolean d)
+    {
+        this.direction = d;
+    }
+    
     public void act() 
     {
         movement();
@@ -39,10 +43,10 @@ public class Enemy1 extends Actor
         {
             move(-4);
         }
-		else
-		{
-			move(0);
-		}
+        else
+        {
+            move(0);
+        }
     }
     
     public void takeDamage()
@@ -64,21 +68,21 @@ public class Enemy1 extends Actor
 
                 if(health == 0)
                 {
-                this.setLocation(currentX -200,275);
+                    this.setLocation(currentX -200,275);
                 
-                pauseState = true;
-                int pauseCTR = 1000;
+                    pauseState = true;
+                    int pauseCTR = 1000;
                 
-                while(pauseCTR > 1)
-                {
-                    pauseCTR--;
+                    while(pauseCTR > 1)
+                    {
+                        pauseCTR--;
              
-                }
-                pauseState = false;
-                if(health == 0)
-                {
-                    if (Easy.class.isInstance(getWorld()))
-        {
+                    }
+                    pauseState = false;
+                    if(health == 0)
+                    {
+                        if (Easy.class.isInstance(getWorld()))
+                        {
             Easy cWorld = (Easy)world;
             SCounter sCounter = cWorld.getCounter();
             sCounter.removeScore();
