@@ -8,7 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Easy extends World
 {
+    //SCORING-ENEMEIS LEFT
     SCounter sCounter = new SCounter();
+    SCCounter sCCounter = new SCCounter();
+    
+    //HP BARS
     HPBars hpbars = new HPBars();
     /**
      * Constructor for objects of class Easy.
@@ -24,13 +28,18 @@ public class Easy extends World
         setBackground(bg);
         
         
-        
         prepare();
     }
     
+    //ENEMIES LEFT
     public SCounter getCounter()
     {
         return sCounter;
+    }
+    //SCORING
+    public SCCounter getCounter1()
+    {
+        return sCCounter;
     }
     
     public HPBars getHPBars()
@@ -87,13 +96,13 @@ public class Easy extends World
         //Enemies Reamining
         getBackground().drawImage(ERImage, 900, 32);
         addObject(sCounter,1035,71);
-        //Enemies Reamining
 
         //Score
         getBackground().drawImage(scoreImage, 700, 32);
-        //addObject(sCounter,1035,71);
-        //Enemies Reamining
+        addObject(sCCounter,768,68);
+        
 
-       
+        
+        
     }
 }

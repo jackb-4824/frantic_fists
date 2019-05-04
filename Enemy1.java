@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy1 extends Actor
 {
     GifImage runR = new GifImage("ERunR.gif");
-//	GifImage runL = new GifImage("E1RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.
-//  GifImage hitR = new GifImage("EHit.gif");		// This is for the hit detection. Unimplemented. Generic.
-//	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
+//  GifImage runL = new GifImage("E1RunL.gif");     // This is (hopefully) for the swarm spawning. Unimplemented.
+//  GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
+//  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
-//	boolean direction = false;
+//  boolean direction = false;
     boolean pauseState = false;
     
     public void act() 
@@ -57,34 +57,35 @@ public class Enemy1 extends Actor
                 {
                 this.setLocation(currentX -200,275);
                 
-                pauseState = true;
-                int pauseCTR = 1000;
+               
                 
-                while(pauseCTR > 1)
-                {
-                    pauseCTR--;
-             
-                }
-                pauseState = false;
                 if(health == 0)
                 {
                     if (Easy.class.isInstance(getWorld()))
-        {
-            Easy cWorld = (Easy)world;
-            SCounter sCounter = cWorld.getCounter();
-            sCounter.removeScore();
-            
-            SCCounter scCounter = cWorld.getCounter1();
-            scCounter.addScore();
-            
-                    world.removeObject(this);
-        }
+                    {
+                     Easy cWorld = (Easy)world;
+                     //ENEMIES LEFT
+                     SCounter sCounter = cWorld.getCounter();
+                     sCounter.removeScore();
+                        
+                     //ADD SCORE
+                     SCCounter scCounter = cWorld.getCounter1();
+                     scCounter.addScore();
+                        
+                                world.removeObject(this);
+                     }
         
         else if (Medium.class.isInstance(getWorld()))
         {
             Medium cWorld = (Medium)world;
+            //ENEMIES LEFT
             SCounter sCounter = cWorld.getCounter();
             sCounter.removeScore();
+            
+            //ADD SCORE
+            SCCounter scCounter = cWorld.getCounter1();
+            scCounter.addScore();
+            
                     world.removeObject(this);
         }
         

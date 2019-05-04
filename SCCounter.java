@@ -17,7 +17,7 @@ public class SCCounter extends Actor
      */
     public void act() 
     {
-       setImage(new GreenfootImage("Score :" + score, 24, Color.GREEN, Color.BLACK));
+       setImage(new GreenfootImage("" + score, 24, Color.WHITE, null));
     }    
     public void addScore()
     {
