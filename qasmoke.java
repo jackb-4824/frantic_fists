@@ -26,7 +26,7 @@ public class qasmoke extends World
 	
 	public void act()
 	{
-		updateGameState();
+//		updateGameState();
 		checkForKeypresses();
 		if (spawningEnabled) spawn();
 		
@@ -98,5 +98,10 @@ public class qasmoke extends World
 	public EnemyLeft getEL()	// like getPH(), but for the enemies remaining
 	{
 		return counterEnemiesRemaining;
+	}
+	
+	public HPBars getHPBars()
+	{
+		return hpbars;
 	}
 }

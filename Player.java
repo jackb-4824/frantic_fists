@@ -22,7 +22,8 @@ public class Player extends Actor
         setImage(idleImage.getCurrentImage());
         
         killLeft();
-        takeDamage();
+        takeDamagefromLeft();
+		takeDamagefromRight();
         
     }
     
@@ -31,7 +32,77 @@ public class Player extends Actor
 		return playerHealth;
 	}
 	
-    public void takeDamage()
+    public void takeDamagefromLeft()
+    {
+        Actor enemy1, enemy2, enemy3, enemy4;
+        World world = getWorld();
+        HPBars hpbars = null;
+               
+        if (world instanceof Easy)
+        {
+            Easy cWorld = (Easy)world;
+            hpbars = cWorld.getHPBars();
+        }
+        
+        else if (world instanceof Medium)
+        {
+            Medium cWorld = (Medium)world;
+            hpbars = cWorld.getHPBars();
+        }
+        
+        else if (world instanceof Hard)
+        {
+            Hard cWorld = (Hard)world;
+            hpbars = cWorld.getHPBars();
+        }
+        else if (world instanceof Endless)
+        {
+            Endless cWorld = (Endless)world;
+            hpbars = cWorld.getHPBars();
+        }
+		else if (world instanceof qasmoke)
+		{
+			qasmoke cWorld = (qasmoke)world;
+			hpbars = cWorld.getHPBars();
+		}
+               
+        enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
+        enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
+        enemy3 = getOneObjectAtOffset(0,0,Enemy3.class);
+        enemy4 = getOneObjectAtOffset(0,0,Enemy4.class);
+        
+        if(enemy1 != null){
+            playerHealth--;
+            hpbars.loseHealth();            
+//			world.removeObject(enemy1);
+        }
+        
+        if(enemy2 != null){
+            playerHealth--;
+            hpbars.loseHealth();
+//          world.removeObject(enemy2);
+        }
+        
+        if(enemy3 != null){
+            playerHealth--;
+            hpbars.loseHealth();
+//          world.removeObject(enemy3);
+        }
+        
+        if(enemy4 != null){
+            playerHealth--;
+            hpbars.loseHealth();
+//			world.removeObject(enemy4);
+        }
+		
+        if(playerHealth == 0)
+        {
+//			world.removeObject(this);				// uncommenting this code results in a crash on death. TODO: fix, somehow
+            Greenfoot.setWorld(new GameOver());
+        }
+    }
+	
+    public void takeDamagefromRight()
     {
         Actor enemy1, enemy2, enemy3, enemy4;
         
@@ -62,61 +133,40 @@ public class Player extends Actor
             hpbars = cWorld.getHPBars();
         }
                
-        enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
-        enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
-        enemy3 = getOneObjectAtOffset(0,0,Enemy3.class);
-        enemy4 = getOneObjectAtOffset(0,0,Enemy4.class);
+        enemy1 = getOneObjectAtOffset(1200,400,Enemy1.class);
+        enemy2 = getOneObjectAtOffset(1200,400,Enemy2.class);
+        enemy3 = getOneObjectAtOffset(1200,400,Enemy3.class);
+        enemy4 = getOneObjectAtOffset(1200,400,Enemy4.class);
         
-        if(enemy1 != null){
-            playerHealth--;
-                hpbars.loseHealth();
-            
-            world.removeObject(enemy1);
-            
-            if(playerHealth == 0)
-            {
-                world.removeObject(this);
-                Greenfoot.setWorld(new GameOver());
-            }
-        }
-        
-        if(enemy2 != null){
+        if(enemy1 != null)
+		{
             playerHealth--;
             hpbars.loseHealth();
-            world.removeObject(enemy2);
-            
-            if(playerHealth == 0)
-            {
-                world.removeObject(this);
-                Greenfoot.setWorld(new GameOver());
-            }
+//			world.removeObject(enemy1);
         }
         
-        if(enemy3 != null){
+        if(enemy2 != null)
+		{
             playerHealth--;
             hpbars.loseHealth();
-            world.removeObject(enemy3);
-            
-            if(playerHealth == 0)
-            {
-                world.removeObject(this);
-                Greenfoot.setWorld(new GameOver());
-            }
+//			world.removeObject(enemy2);
         }
         
-        if(enemy4 != null){
+        if(enemy3 != null)
+		{
             playerHealth--;
             hpbars.loseHealth();
-            world.removeObject(enemy4);
-            
-            if(playerHealth == 0)
-            {
-                world.removeObject(this);
-                Greenfoot.setWorld(new GameOver());
-            }
+//			world.removeObject(enemy3);
+        }
+        
+        if(enemy4 != null)
+		{
+            playerHealth--;
+            hpbars.loseHealth();
+//			world.removeObject(enemy4);
         }
     }
-    
+	
     public void killLeft()
     {
         Actor enemy1;
