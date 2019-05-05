@@ -43,10 +43,10 @@ public class qasmoke extends World
 	
 	private void checkForKeypresses()
 	{
-		if(Greenfoot.isKeyDown("F12"))
+		if(Greenfoot.isKeyDown("9"))
 			spawningEnabled = !spawningEnabled; 
 		
-		if(Greenfoot.isKeyDown("F11"))
+		if(Greenfoot.isKeyDown("8"))
 			preferredDirection = !preferredDirection;
 		
 		if(Greenfoot.isKeyDown("1"))

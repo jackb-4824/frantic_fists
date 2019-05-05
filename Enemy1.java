@@ -9,7 +9,7 @@
 public class Enemy1 extends Actor
 {
     GifImage runR = new GifImage("ERunR.gif");
-//  GifImage runL = new GifImage("E1RunL.gif");     // This is (hopefully) for the swarm spawning. Unimplemented.
+    GifImage runL = new GifImage("ERunLv2.gif");   // Hoepfully, it can resolve this
 //  GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
 //  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
@@ -30,18 +30,19 @@ public class Enemy1 extends Actor
     {
         movement();
         takeDamage();       
-        setImage(runR.getCurrentImage());
     }
     
     public void movement()
     {
-        if(!pauseState || !direction)
+        if(!pauseState & !direction)
         {
             move(4);
+            setImage(runR.getCurrentImage());
         }
-        else if (!pauseState || direction)
+        else if (!pauseState & direction)
         {
             move(-4);
+            setImage(runL.getCurrentImage());
         }
         else
         {
@@ -55,8 +56,7 @@ public class Enemy1 extends Actor
         
         Actor player;
         
-        World world;
-        world = getWorld();
+        World world = getWorld();
         
         player = getOneObjectAtOffset(10,0,Player.class);
         
@@ -68,8 +68,6 @@ public class Enemy1 extends Actor
 
                 if(health == 0)
                 {
-                    this.setLocation(currentX -200,275);
-                
                     pauseState = true;
                     int pauseCTR = 1000;
                 
@@ -98,25 +96,26 @@ public class Enemy1 extends Actor
         }
         
         else if (Hard.class.isInstance(getWorld()))
-        {
-            Hard cWorld = (Hard)world;
-            SCounter sCounter = cWorld.getCounter();;
-            sCounter.removeScore();
+                {
+                        Hard cWorld = (Hard)world;
+                        SCounter sCounter = cWorld.getCounter();
+                        sCounter.removeScore();
+                        world.removeObject(this);
+                }
+                else if (Endless.class.isInstance(getWorld()))
+                {
+                    Endless cWorld = (Endless)world;
+                    SCounter sCounter = cWorld.getCounter();
+                    sCounter.removeScore();
                     world.removeObject(this);
-        }
-        else if (Endless.class.isInstance(getWorld()))
-        {
-            Endless cWorld = (Endless)world;
-            SCounter sCounter = cWorld.getCounter();
-             sCounter.removeScore();
+                }
+                else
+                {
                     world.removeObject(this);
-        }
-                    
-                    //SCounter sCounter = easy.getCounter();
-                   
                 }
             }
         }
     }
+}
 }
 }
