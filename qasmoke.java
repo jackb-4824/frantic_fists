@@ -2,9 +2,10 @@ import greenfoot.*;
 
 public class qasmoke extends World
 {
-	Player player = new Player();
-	EnemyLeft counterEnemiesRemaining = new EnemyLeft();
 	HPBars hpbars = new HPBars();
+	Player player = new Player(hpbars);
+	EnemyLeft counterEnemiesRemaining = new EnemyLeft();
+
 	private int playerHealthAsOfPreviousTick = 0;
 	private boolean spawningEnabled = false;
 	private boolean preferredDirection = false;

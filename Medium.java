@@ -73,7 +73,7 @@ public class Medium extends World
     private void prepare()
     {
         
-        Player player = new Player();
+        Player player = new Player(hpbars);
         addObject(player,600,275);
         addObject(hpbars, 200, 40);
 

@@ -46,8 +46,11 @@ public class Easy extends World
     {
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
-            if (getObjects(Enemy1.class).size() < 10) {  
-                addObject(new Enemy1(), 0, 275);  
+            if (getObjects(Enemy1.class).size() < 10) {
+				if(Greenfoot.getRandomNumber(1) == 0)
+					addObject(new Enemy1(false, sCounter), 0, 275);
+				else
+					addObject(new Enemy1(true, sCounter), 1199, 275);
             }
         }
         
@@ -73,7 +76,7 @@ public class Easy extends World
     private void prepare()
     {
         
-        Player player = new Player();
+        Player player = new Player(hpbars);
         addObject(player,600,275);
         addObject(hpbars, 200, 40);
 
