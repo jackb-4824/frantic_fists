@@ -93,7 +93,7 @@ public class MyWorld extends World
      */
     private void prepare()
     {
-        Player player = new Player();
+        Player player = new Player(hpbars);
         addObject(player,600,275);
        
         addObject(enemiesLeft,999,54);
