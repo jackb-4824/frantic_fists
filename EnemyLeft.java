@@ -6,11 +6,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class EnemyLeft extends Player
+public class EnemyLeft extends Actor
 {
-   public void act() 
-    {
-        setImage(new GreenfootImage("Enemies Left : "+ EnemiesLeft , 30, Color.WHITE, Color.BLACK));
-    }
-
+	private int enemiesLeft = 0;
+	
+	public EnemyLeft()
+	{
+		;
+	}
+	
+	public EnemyLeft(int el)
+	{
+		this.enemiesLeft = el;
+	}
+	
+	public void act() 
+	{
+		setImage(new GreenfootImage("Enemies Left : "+ enemiesLeft , 30, Color.WHITE, Color.BLACK));
+	}
+	
 }

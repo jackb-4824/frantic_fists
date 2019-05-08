@@ -6,9 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class HPBars extends Player
+public class HPBars extends Actor
 {
-    int health= 3;
+    int health = 3;
     int HealthBarwidth = 120;
     int HealthBarheight = 25;
     int PixelsPerHealthPoint = (int)HealthBarwidth/health;
@@ -17,10 +17,6 @@ public class HPBars extends Player
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    public HPBars()
-    {
-        update();
-    }
     public void act() 
     {
         update();
