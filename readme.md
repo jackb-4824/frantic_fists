@@ -19,6 +19,9 @@ This project is the work of MILLARES, Alfonso Gabriel, BAKER, John Allen, and UM
 
 ##To-do
 Implement event handling characteristics, but that's beyond our skill levels.
+
+Enemy1:
+	Reimplement pauseCTR functionality to adhere to world time
 ##How it Works
 This section is to-do, really.
 ###The Player
