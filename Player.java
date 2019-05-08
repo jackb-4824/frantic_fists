@@ -1,97 +1,74 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * This is the player. It's job is to animate itself.
+ * It's job is to keep HPBars updated (because that checks for player death),
+ * keep track of it's own health,
+ * and really that's about it.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
 public class Player extends Actor
 {
-    GifImage idleImage = new GifImage("IdleL.gif");
-    GifImage pLeftImage = new GifImage("PunchL.gif");
-    GifImage pRightImage = new GifImage("PunchR.gif");
-    boolean hitplayer = false;
-    int animation = 1;
-    int playerHealth = 3;
-    int EnemiesLeft = 15;
-    
-    String key = Greenfoot.getKey();
+//	Animations.
+	GifImage idleImage = new GifImage("IdleL.gif");
+	GifImage pLeftImage = new GifImage("PunchL.gif");
+	GifImage pRightImage = new GifImage("PunchR.gif");
+//	End of Animations.
+//	Statuses
+	int playerHealth = 3;
+//	End of statuses.
+//	Data that doesn't need refreshing literally every damn tick
+	Actor enemy1, enemy2, enemy3, enemy4;
+	World world = getWorld();
+	HPBars hpbars = null;  
+	
+//	End of data that doesn't need refreshing literally every damn tick
+	
+	public Player(HPBars hpb)
+	{
+		this.hpbars = hpb;
+	}
+	
     public void act() 
     {
         setImage(idleImage.getCurrentImage());
         
-        killLeft();
-        takeDamagefromLeft();
-		takeDamagefromRight();
+//		What used to be killLeft() was just copy-pasted here, because it was pointless to keep it as it's own method
+        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
+            setImage(pLeftImage.getCurrentImage());
+        }
+//		end of killLeft();
+        takeDamage();
         
     }
-    
-	public int getHealth()
-	{
-		return playerHealth;
-	}
 	
-    public void takeDamagefromLeft()
+    public void takeDamage()
     {
-        Actor enemy1, enemy2, enemy3, enemy4;
-        World world = getWorld();
-        HPBars hpbars = null;
-               
-        if (world instanceof Easy)
-        {
-            Easy cWorld = (Easy)world;
-            hpbars = cWorld.getHPBars();
-        }
-        
-        else if (world instanceof Medium)
-        {
-            Medium cWorld = (Medium)world;
-            hpbars = cWorld.getHPBars();
-        }
-        
-        else if (world instanceof Hard)
-        {
-            Hard cWorld = (Hard)world;
-            hpbars = cWorld.getHPBars();
-        }
-        else if (world instanceof Endless)
-        {
-            Endless cWorld = (Endless)world;
-            hpbars = cWorld.getHPBars();
-        }
-		else if (world instanceof qasmoke)
-		{
-			qasmoke cWorld = (qasmoke)world;
-			hpbars = cWorld.getHPBars();
-		}
-               
-        enemy1 = getOneObjectAtOffset(0,0,Enemy1.class);
-        enemy2 = getOneObjectAtOffset(0,0,Enemy2.class);
-        enemy3 = getOneObjectAtOffset(0,0,Enemy3.class);
-        enemy4 = getOneObjectAtOffset(0,0,Enemy4.class);
-        
-        if(enemy1 != null){
+        if(isTouching(Enemy1.class)){
             playerHealth--;
             hpbars.loseHealth();            
 //			world.removeObject(enemy1);
         }
         
-        if(enemy2 != null){
+        if(isTouching(Enemy2.class)){
             playerHealth--;
             hpbars.loseHealth();
 //          world.removeObject(enemy2);
         }
         
-        if(enemy3 != null){
-            playerHealth--;
-            hpbars.loseHealth();
-//          world.removeObject(enemy3);
-        }
-        
-        if(enemy4 != null){
-            playerHealth--;
-            hpbars.loseHealth();
+		if(isTouching(Enemy3.class))
+		{
+			playerHealth--;
+			hpbars.loseHealth();
+//			world.removeObject(enemy3);
+		}
+		
+		if(isTouching(Enemy4.class))
+		{
+			playerHealth--;
+			hpbars.loseHealth();
 //			world.removeObject(enemy4);
         }
 		
@@ -102,86 +79,8 @@ public class Player extends Actor
         }
     }
 	
-    public void takeDamagefromRight()
-    {
-        Actor enemy1, enemy2, enemy3, enemy4;
-        
-        World world = getWorld();
-        
-        HPBars hpbars = null;
-               
-        if (world instanceof Easy)
-        {
-            Easy cWorld = (Easy)world;
-            hpbars = cWorld.getHPBars();
-        }
-        
-        else if (world instanceof Medium)
-        {
-            Medium cWorld = (Medium)world;
-            hpbars = cWorld.getHPBars();
-        }
-        
-        else if (world instanceof Hard)
-        {
-            Hard cWorld = (Hard)world;
-            hpbars = cWorld.getHPBars();
-        }
-        else if (world instanceof Endless)
-        {
-            Endless cWorld = (Endless)world;
-            hpbars = cWorld.getHPBars();
-        }
-               
-        enemy1 = getOneObjectAtOffset(1200,400,Enemy1.class);
-        enemy2 = getOneObjectAtOffset(1200,400,Enemy2.class);
-        enemy3 = getOneObjectAtOffset(1200,400,Enemy3.class);
-        enemy4 = getOneObjectAtOffset(1200,400,Enemy4.class);
-        
-        if(enemy1 != null)
-		{
-            playerHealth--;
-            hpbars.loseHealth();
-//			world.removeObject(enemy1);
-        }
-        
-        if(enemy2 != null)
-		{
-            playerHealth--;
-            hpbars.loseHealth();
-//			world.removeObject(enemy2);
-        }
-        
-        if(enemy3 != null)
-		{
-            playerHealth--;
-            hpbars.loseHealth();
-//			world.removeObject(enemy3);
-        }
-        
-        if(enemy4 != null)
-		{
-            playerHealth--;
-            hpbars.loseHealth();
-//			world.removeObject(enemy4);
-        }
-    }
-	
-    public void killLeft()
-    {
-        Actor enemy1;
-        Actor enemy2;
-        
-        World world;
-        world = getWorld();
-        
-
-        enemy1 = getOneObjectAtOffset(-50,0,Enemy1.class);
-        enemy2 = getOneObjectAtOffset(-50,0,Enemy2.class);
-        
-        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-            setImage(pLeftImage.getCurrentImage());
-        }
-    }
-    
+	public int getHealth()
+	{
+		return playerHealth;
+	}
 }
