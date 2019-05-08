@@ -1,4 +1,4 @@
-    import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * The basic enemy.
@@ -9,14 +9,16 @@
 public class Enemy1 extends Actor
 {
     GifImage runR = new GifImage("ERunR.gif");
-    GifImage runL = new GifImage("ERunL.gif");   // Hoepfully, it can resolve this
+    GifImage runL = new GifImage("ERunL.gif");
 //  GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
 //  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
+	boolean 
     boolean direction = false;
     boolean pauseState = false;
     Actor player;
+	SCounter sCounter;
     
     public Enemy1(){
     }
@@ -28,8 +30,21 @@ public class Enemy1 extends Actor
     }
 	
 	@Override
-	protected void addedToWorld(World unused)
+	protected void addedToWorld(World world)
 	{
+		if (world instanceof Easy)
+			Easy cWorld = (Easy)world;
+		else if (world instanceof Medium)
+			Medium cWorld = (Medium)world;
+		else if (world instanceof Hard)
+			Hard cWorld = (Hard)world;
+		else if (world instanceof Endless)
+			Endless cWorld = (Endless)world;
+		else
+			World cWorld = world;
+		
+		sCounter = cWorld.getCounter();
+		
         if(!this.direction)
             player = getOneObjectAtOffset(10,0,Player.class);
         else
@@ -38,10 +53,11 @@ public class Enemy1 extends Actor
 	
     public void act() 
     {
+		if
         movement();
         takeDamage();
 		if(isTouching(Player.class))
-			fallback();     
+//			fallback();     
     }
     
     private void movement()
@@ -66,8 +82,6 @@ public class Enemy1 extends Actor
     {
         int currentX = getX();
         
-        World world = getWorld();
-        
         if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a"))
 		{
             if(player != null)
@@ -85,38 +99,8 @@ public class Enemy1 extends Actor
 				
                 if(health == 0)
                 {
-					if (world instanceof Easy)
-                    {
-            				Easy cWorld = (Easy)world;
-            				SCounter sCounter = cWorld.getCounter();
-            				sCounter.removeScore();
-                    		world.removeObject(this);
-        				}
-					else if (Medium.class.isInstance(getWorld()))
-        			{
-            				Medium cWorld = (Medium)world;
-            				SCounter sCounter = cWorld.getCounter();
-            				sCounter.removeScore();
-                			world.removeObject(this);
-        				}
-					else if (Hard.class.isInstance(getWorld()))
-                	{
-                        	Hard cWorld = (Hard)world;
-                        	SCounter sCounter = cWorld.getCounter();
-                        	sCounter.removeScore();
-                        	world.removeObject(this);
-                		}
-                	else if (Endless.class.isInstance(getWorld()))
-                	{
-                    	Endless cWorld = (Endless)world;
-                    	SCounter sCounter = cWorld.getCounter();
-                    	sCounter.removeScore();
-                    	world.removeObject(this);
-                	}
-                	else
-                	{
-                    	world.removeObject(this);
-                	}
+            		sCounter.removeScore();
+                    cWorld.removeObject(this);
 				}
         }
     }
