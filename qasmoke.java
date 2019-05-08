@@ -2,9 +2,13 @@ import greenfoot.*;
 
 public class qasmoke extends World
 {
-	PlayerHealth playerHealth = new PlayerHealth();
+	HPBars hpbars = new HPBars();
+	Player player = new Player(hpbars);
 	EnemyLeft counterEnemiesRemaining = new EnemyLeft();
-	private boolean spawningEnabled = true;
+
+	private int playerHealthAsOfPreviousTick = 0;
+	private boolean spawningEnabled = false;
+	private boolean preferredDirection = false;
 	
 	public qasmoke()
 	{
@@ -14,27 +18,45 @@ public class qasmoke extends World
 	
 	private void prepare()
 	{
-		Player player = new Player();
+
 		addObject(player, 600, 275);
-		addObject(playerHealth, 477, 199);
-		
+		playerHealthAsOfPreviousTick = player.getHealth();
+		addObject(hpbars, 200, 40);
 		addObject(counterEnemiesRemaining, 999, 54);
 	}
 	
 	public void act()
 	{
+//		updateGameState();
 		checkForKeypresses();
 		if (spawningEnabled) spawn();
 		
 	}
 	
-	public void checkForKeypresses()
+	private void updateGameState()
 	{
-		if(Greenfoot.isKeyDown("~"))
+		if(player.getHealth() < playerHealthAsOfPreviousTick)
 		{
-			spawningEnabled = !spawningEnabled; 
+			playerHealthAsOfPreviousTick = player.getHealth();
+			hpbars.loseHealth();
 		}
+	}
+	
+	private void checkForKeypresses()
+	{
+		if(Greenfoot.isKeyDown("9"))
+			spawningEnabled = !spawningEnabled; 
 		
+		if(Greenfoot.isKeyDown("8"))
+			preferredDirection = !preferredDirection;
+		
+		if(Greenfoot.isKeyDown("1"))
+		{
+			if(!preferredDirection)
+            	addObject(new Enemy1(), 0, 275);
+			if(preferredDirection)
+				addObject(new Enemy1(preferredDirection), 1200, 275);
+		}
 		// TODO: Implement functionality to just press keys to manually force a guaranteed spawn
 	}
 	
@@ -42,8 +64,11 @@ public class qasmoke extends World
     {
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
-            if (getObjects(Enemy1.class).size() < 10) {  
-                addObject(new Enemy1(), 0, 275);  
+            if (getObjects(Enemy1.class).size() < 10) {
+				if(!preferredDirection)
+                	addObject(new Enemy1(), 0, 275);
+				if(preferredDirection)
+					addObject(new Enemy1(preferredDirection), 1200, 275);
             }
         }
         
@@ -70,15 +95,14 @@ public class qasmoke extends World
         }
         
     }
-		
-	public PlayerHealth getPH()	// this lets us return the world's PlayerHealth to actors
-	{
-		return playerHealth;
-	}
 	
 	public EnemyLeft getEL()	// like getPH(), but for the enemies remaining
 	{
 		return counterEnemiesRemaining;
 	}
 	
+	public HPBars getHPBars()
+	{
+		return hpbars;
+	}
 }

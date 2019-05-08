@@ -57,7 +57,7 @@ public class Medium extends World
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
             if (getObjects(Enemy1.class).size() < 10) {  
-                addObject(new Enemy1(), 0, 275);  
+                addObject(new Enemy1(), 0, 275);  // TODO: CONSTRUCTORS!
             }
         }
         
@@ -83,9 +83,9 @@ public class Medium extends World
     private void prepare()
     {
         GreenfootImage scoreImage = new GreenfootImage("Score.png");
-        GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG");
-        Player player = new Player();
-        
+        GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG");  //TODO: THE FUCKS ALL THIS?
+        Player player = new Player(hpbars);
+
         addObject(player,600,275);
         addObject(hpbars, 200, 40);
 

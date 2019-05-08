@@ -22,12 +22,7 @@ public class EnterGame extends World
         
         prepare();
     }
-       
-    private void prepare()
-    {
-
-    }
-    
+    private void prepare() {}
     public void act()
     {
         if (Greenfoot.isKeyDown("Enter"))
