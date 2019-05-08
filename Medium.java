@@ -8,7 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Medium extends World
 {
+    //SCORING-ENEMEIS LEFT
     SCounter sCounter = new SCounter();
+    SCCounter sCCounter = new SCCounter();
+    
+    //HP BARS
     HPBars hpbars = new HPBars();
     /**
      * Constructor for objects of class Medium.
@@ -26,9 +30,15 @@ public class Medium extends World
         prepare();
     }
     
+    //ENEMIES LEFT
     public SCounter getCounter()
     {
         return sCounter;
+    }
+    //SCORING
+    public SCCounter getCounter1()
+    {
+        return sCCounter;
     }
     
     public HPBars getHPBars()
@@ -47,7 +57,7 @@ public class Medium extends World
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
             if (getObjects(Enemy1.class).size() < 10) {  
-                addObject(new Enemy1(), 0, 275);  
+                addObject(new Enemy1(), 0, 275);  // TODO: CONSTRUCTORS!
             }
         }
         
@@ -72,14 +82,19 @@ public class Medium extends World
      */
     private void prepare()
     {
-        
+        GreenfootImage scoreImage = new GreenfootImage("Score.png");
+        GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG");  //TODO: THE FUCKS ALL THIS?
         Player player = new Player(hpbars);
+
         addObject(player,600,275);
         addObject(hpbars, 200, 40);
 
-        //addObject(playerHealth,477,199);
-        //addObject(enemiesLeft,999,54);
-       
-        addObject(sCounter,996,32);
+        //Enemies Reamining
+        getBackground().drawImage(ERImage, 900, 32);
+        addObject(sCounter,1035,71);
+
+        //Score
+        getBackground().drawImage(scoreImage, 700, 32);
+        addObject(sCCounter,768,68);
     }
 }

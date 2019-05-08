@@ -14,11 +14,12 @@ public class Enemy1 extends Actor
 //  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
-    boolean direction = false;
+    boolean direction = false;d
     boolean pauseState = false;
 	World world = getWorld();
     Actor player;
 	SCounter sCounter;
+  SCCounter scCounter;  //TODO: FIX AND ADD TO CONSTRUCTOR REQUIREMENTS
     
     public Enemy1(){
     }
@@ -27,6 +28,7 @@ public class Enemy1 extends Actor
     {
         this.direction = d;
 		this.sCounter = sc;
+    //SON OF A BITCH AAAA SCCOUNTER SCCOUNTER = SUCC;
     }
 	
     public void act() 
@@ -92,6 +94,7 @@ public class Enemy1 extends Actor
 		if(health == 0)
 		{
 			sCounter.removeScore();
+      scCounter.addScore();     //TODO: PLEASE FIX AND IMPLEMENT
 			world.removeObject(this);
 		}
 	}

@@ -17,7 +17,7 @@ public class HELPMe extends World
     {    
         super(1200, 400, 1);
         
-        GreenfootImage bg = new GreenfootImage("Congratulations.png");
+        GreenfootImage bg = new GreenfootImage("HelpMenu.png");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
         
@@ -26,10 +26,24 @@ public class HELPMe extends World
        
     private void prepare()
     {
+        GreenfootImage PstaticL = new GreenfootImage("PunchLStatic.png");
+        GreenfootImage PstaticR = new GreenfootImage("PunchRStatic.png");
+        
+        GreenfootImage staticE1 = new GreenfootImage("RedRunStatic.png"); 
+        GreenfootImage staticE2 = new GreenfootImage("BlueRunStatic.png");
+        GreenfootImage staticE3 = new GreenfootImage("PurpleRunStatic.png");
+        GreenfootImage staticE4 = new GreenfootImage("GreenRunStatic.png");
+
         Winner winner = new Winner();
         addObject(winner,363,154);
 
+        getBackground().drawImage(PstaticL, 70, 18);
+        getBackground().drawImage(PstaticR, 270, 18);
         
+        getBackground().drawImage(staticE1, 490, 20);
+        getBackground().drawImage(staticE2, 670, 20);
+        getBackground().drawImage(staticE3, 850, 20);
+        getBackground().drawImage(staticE4, 1030, 20);
     }
     
     public void act()
@@ -37,12 +51,11 @@ public class HELPMe extends World
         if (Greenfoot.isKeyDown("right"))
         Greenfoot.setWorld(new HELPMe2());
         
-    }
-    {
-        if (Greenfoot.isKeyDown("left"))
+         if (Greenfoot.isKeyDown("backspace"))
         Greenfoot.setWorld(new Stages());
         
     }
+ 
     }
 
 

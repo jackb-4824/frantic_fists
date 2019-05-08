@@ -1,3 +1,5 @@
+
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -23,12 +25,13 @@ public class Player extends Actor
 	Actor enemy1, enemy2, enemy3, enemy4;
 	World world = getWorld();
 	HPBars hpbars = null;  
-	
+//TODO: SCCOUNTER AGAIN FUCK	SCCOUNTER OBJ = NULL;
 //	End of data that doesn't need refreshing literally every damn tick
 	
 	public Player(HPBars hpb)
 	{
 		this.hpbars = hpb;
+    //TODO SHOULD SCCOUNTER BE HERE? PROBABLY. THIS.OBJ = SUCC;
 	}
 	
     public void act() 
@@ -50,6 +53,7 @@ public class Player extends Actor
             playerHealth--;
             hpbars.loseHealth();            
 //			world.removeObject(enemy1);
+            obj.combobreak();
         }
         
         if(isTouching(Enemy2.class)){
