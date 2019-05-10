@@ -1,5 +1,3 @@
-
-
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -13,60 +11,77 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-//	Animations.
-	GifImage idleImage = new GifImage("IdleL.gif");
-	GifImage pLeftImage = new GifImage("PunchL.gif");
-	GifImage pRightImage = new GifImage("PunchR.gif");
-//	End of Animations.
-//	Statuses
+
+	GifImage idleL = new GifImage("IdleL.gif");
+	GifImage idleR = new GifImage("IdleR.gif");
+	GifImage punchL = new GifImage("PunchL.gif");
+	GifImage punchR = new GifImage("PunchR.gif");
+
 	int playerHealth = 3;
-//	End of statuses.
-//	Data that doesn't need refreshing literally every damn tick
-	Actor enemy1, enemy2, enemy3, enemy4;
+	boolean direction = false;
+	
 	World world = getWorld();
 	HPBars hpbars = null;  
-//TODO: SCCOUNTER AGAIN FUCK	SCCOUNTER OBJ = NULL;
-//	End of data that doesn't need refreshing literally every damn tick
+	ScoreCounter scoreCounter = null;
 	
-	public Player(HPBars hpb)
+	public Player() {}
+	
+	public Player(HPBars hpb, ScoreCounter sc)
 	{
 		this.hpbars = hpb;
-    //TODO SHOULD SCCOUNTER BE HERE? PROBABLY. THIS.OBJ = SUCC;
+		this.scoreCounter = sc;
 	}
 	
     public void act() 
     {
-        setImage(idleImage.getCurrentImage());
-        
-//		What used to be killLeft() was just copy-pasted here, because it was pointless to keep it as it's own method
-        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-            setImage(pLeftImage.getCurrentImage());
-        }
-//		end of killLeft();
+		playIdleAnim();
+        punch();
         takeDamage();
         
     }
 	
-    public void takeDamage()
+	private void punch()
+	{
+        if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
+		{
+			setImage(punchL.getCurrentImage());
+			direction = false;
+        }
+		
+		if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
+		{
+			setImage(punchR.getCurrentImage());
+			direction = true;
+		}
+	}
+	
+	private void playIdleAnim()
+	{
+		if(!direction)
+			setImage(idleL.getCurrentImage());
+		else
+			setImage(idleR.getCurrentImage());
+	}
+	
+    private void takeDamage()
     {
         if(isTouching(Enemy1.class)){
             playerHealth--;
             hpbars.loseHealth();            
-//			world.removeObject(enemy1);
-//            obj.combobreak();
+			scoreCounter.combobreak();
         }
         
         if(isTouching(Enemy2.class)){
             playerHealth--;
             hpbars.loseHealth();
-//          world.removeObject(enemy2);
+			scoreCounter.combobreak();
         }
         
 		if(isTouching(Enemy3.class))
 		{
 			playerHealth--;
 			hpbars.loseHealth();
-//			world.removeObject(enemy3);
+			
 		}
 		
 		if(isTouching(Enemy4.class))
@@ -78,7 +93,7 @@ public class Player extends Actor
 		
         if(playerHealth == 0)
         {
-//			world.removeObject(this);				// uncommenting this code results in a crash on death. TODO: fix, somehow
+//			world.removeObject(this); // uncommenting this will crash the game.
             Greenfoot.setWorld(new GameOver());
         }
     }

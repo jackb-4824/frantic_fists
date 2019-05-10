@@ -15,6 +15,7 @@ public class Enemy2 extends Actor
          
     int health = 1;
 	int speed = 5;
+	int pauseCTR = 0;
 	boolean direction = false;
 	boolean isTouchingPlayer = false;
     boolean pauseState = false;
@@ -41,13 +42,17 @@ public class Enemy2 extends Actor
 	
     public void act() 
     {
-        movement();
 		checkForPlayerCollision();
+        movement();
         takeDamage();
     }
     
     public void movement()
     {
+		if(pauseCTR == 0)
+		{
+			pauseState = false;
+		}
         if(!pauseState & !direction)
         {
             move(speed);
@@ -56,11 +61,12 @@ public class Enemy2 extends Actor
         else if (!pauseState & direction)
         {
             move(-speed);
-			setImage(runL.getCurrentImage());
+            setImage(runL.getCurrentImage());
         }
         else
         {
             move(0);
+			pauseCTR--;
         }
     }
 
@@ -68,7 +74,7 @@ public class Enemy2 extends Actor
 	{   
 		if(!direction)	// if facing right
 		{
-			player = getOneObjectAtOffset(20,0,Player.class);
+			player = getOneObjectAtOffset(50,0,Player.class);
 			
 			if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
 			{
@@ -76,25 +82,25 @@ public class Enemy2 extends Actor
 				{
 					health--;
 					fallback();
-/*					pauseState = true;
-					int pauseCTR = 1000;
-				
-					while(pauseCTR > 1)
-						pauseCTR--;
-				
-					pauseState = false;
-*/				}
+					pauseState = true;
+					pauseCTR = 25;
+					pauseCTR--;
+				}
 			}
 		}
 		else if (direction)	// if facing left
 		{
-			player = getOneObjectAtOffset(-20,0,Player.class);
+			player = getOneObjectAtOffset(-50,0,Player.class);
 			
 			if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
 			{
 				if(player != null)
 				{
 					health--;
+					fallback();
+					pauseState = true;
+					pauseCTR = 25;
+					pauseCTR--;
 				}
 			}
 		}

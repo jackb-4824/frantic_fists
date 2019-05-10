@@ -15,6 +15,7 @@ public class Enemy1 extends Actor
 	
 	int health = 2;
 	int speed = 4;
+	int pauseCTR = 0;
 	boolean direction = false;
 	boolean isTouchingPlayer = false;
 	boolean pauseState = false;
@@ -41,13 +42,17 @@ public class Enemy1 extends Actor
 	
     public void act() 
     {
-		movement();
 		checkForPlayerCollision();
+		movement();
 		takeDamage();
     }
 	
     private void movement()
     {
+		if(pauseCTR == 0)
+		{
+			pauseState = false;
+		}
         if(!pauseState & !direction)
         {
             move(speed);
@@ -61,6 +66,7 @@ public class Enemy1 extends Actor
         else
         {
             move(0);
+			pauseCTR--;
         }
     }
     
@@ -78,27 +84,25 @@ public class Enemy1 extends Actor
 					{
 						health--;
 						fallback();
-/*						pauseState = true;
-						int pauseCTR = 1000;
-						
-						while(pauseCTR > 1)
+						pauseState = true;
+						pauseCTR = 25;
 						pauseCTR--;
-						
-						pauseState = false;
-*/					}
+					}
 				}
 			}
 			
 			else if (direction)	// if facing left
 			{
 				player = getOneObjectAtOffset(-50,0,Player.class);
-				
 				if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
 				{
 					if(player != null)
 					{
 						health--;
 						fallback();
+						pauseState = true;
+						pauseCTR = 25;
+						pauseCTR--;
 					}
 				}
 			}
