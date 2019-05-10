@@ -4,7 +4,7 @@ import greenfoot.*;
  * The glass cannon enemy.
  * 
  * @author (your name)
- * @version 0.5.0
+ * @version 1.0.0
  */
 public class Enemy2 extends Actor
 {

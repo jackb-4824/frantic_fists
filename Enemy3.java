@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * An older (?) implementation of the Warper.
+ * The tank.
  * 
  * @author (your name) 
- * @version 0.0.1
+ * @version 1.0.0
  */
 public class Enemy3 extends Actor
 {

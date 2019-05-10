@@ -4,7 +4,7 @@ import greenfoot.*;
  * The basic enemy.
  * 
  * @author (your name) 
- * @version 0.5.0
+ * @version 1.0.0
  */
 public class Enemy1 extends Actor
 {
