@@ -19,7 +19,7 @@ public class ScoreCounter extends Actor
     {
        setImage(new GreenfootImage("" + score, 24, Color.WHITE, null));
     }    
-    public void addScore()
+    public void increment()
     {
         score=score+addtoscore;
         combo++;

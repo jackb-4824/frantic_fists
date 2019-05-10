@@ -32,7 +32,7 @@ public class EnemyCounter extends Actor
         
     }    
     
-    public void removeScore()
+    public void decrement()
     {
         this.EnemiesLeft--;
     }
