@@ -89,7 +89,7 @@ public class Hard extends World
 		GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG");
 		
 		addObject(player,600,275);
-		addObject(hpbars, 200, 40);
+		addObject(hpbars, 630, 355);
 		
 		getBackground().drawImage(ERImage, 900, 32);
 		addObject(enemyCounter,1035,71);

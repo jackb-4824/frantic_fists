@@ -8,12 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Easy extends World
 {
-	ScoreCounter scoreCounter = new ScoreCounter();
-	EnemyCounter enemyCounter = new EnemyCounter(scoreCounter);
-	HPBars hpbars = new HPBars();
-	Player player = new Player(hpbars, scoreCounter);
+       
+    ScoreCounter scoreCounter = new ScoreCounter();
+    EnemyCounter enemyCounter = new EnemyCounter(scoreCounter);
+    HPBars hpbars = new HPBars();
+    Player player = new Player(hpbars, scoreCounter);
 
-	
+    
     /**
      * Constructor for objects of class Easy.
      * 
@@ -24,10 +25,10 @@ public class Easy extends World
         GreenfootImage bg = new GreenfootImage("TestBG.png");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
-		
+        
         prepare();
     }
-	
+        
     public void act()
     {
         spawn();
@@ -38,22 +39,22 @@ public class Easy extends World
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
             if (getObjects(Enemy1.class).size() < 10)
-			{
-				if(Greenfoot.getRandomNumber(2) == 0)
-					addObject(new Enemy1(false, enemyCounter, scoreCounter), 0, 275);
-				else
-					addObject(new Enemy1(true, enemyCounter, scoreCounter), 1199, 275);
+            {
+                if(Greenfoot.getRandomNumber(2) == 0)
+                    addObject(new Enemy1(false, enemyCounter, scoreCounter), 0, 275);
+                else
+                    addObject(new Enemy1(true, enemyCounter, scoreCounter), 1199, 275);
             }
         }
         
         if (Greenfoot.getRandomNumber(1000) < 5) 
         {
             if (getObjects(Enemy2.class).size() < 10)
-			{
-				if(Greenfoot.getRandomNumber(2) == 0)
-					addObject(new Enemy2(false, enemyCounter, scoreCounter), 0, 275);
-				else
-					addObject(new Enemy2(true, enemyCounter, scoreCounter), 1199, 275);
+            {
+                if(Greenfoot.getRandomNumber(2) == 0)
+                    addObject(new Enemy2(false, enemyCounter, scoreCounter), 0, 275);
+                else
+                    addObject(new Enemy2(true, enemyCounter, scoreCounter), 1199, 275);
             }
         }
     }
@@ -76,21 +77,21 @@ public class Easy extends World
         getBackground().drawImage(scoreImage, 700, 32);
         addObject(scoreCounter,768,68);   
     }
-	
-//	The following are probably vestigial. (as of 2019-05-10)
-	
-	public EnemyCounter getEC()
-	{
-		return enemyCounter;
-	}
-	
-	public ScoreCounter getSC()
-	{
-		return scoreCounter;
-	}
-	
-	public HPBars getHPBars()
-	{
-		return hpbars;
-	}
+    
+//  The following are probably vestigial. (as of 2019-05-10)
+    
+    public EnemyCounter getEC()
+    {
+        return enemyCounter;
+    }
+    
+    public ScoreCounter getSC()
+    {
+        return scoreCounter;
+    }
+    
+    public HPBars getHPBars()
+    {
+        return hpbars;
+    }
 }

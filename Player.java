@@ -12,94 +12,120 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends Actor
 {
 
-	GifImage idleL = new GifImage("IdleL.gif");
-	GifImage idleR = new GifImage("IdleR.gif");
-	GifImage punchL = new GifImage("PunchL.gif");
-	GifImage punchR = new GifImage("PunchR.gif");
+    GifImage idleL = new GifImage("IdleL.gif");
+    GifImage idleR = new GifImage("IdleR.gif");
+    GifImage punchL = new GifImage("PunchL.gif");
+    GifImage punchR = new GifImage("PunchR.gif");
 
-	int playerHealth = 3;
-	boolean direction = false;
-	
-	World world = getWorld();
-	HPBars hpbars = null;  
-	ScoreCounter scoreCounter = null;
-	
-	public Player() {}
-	
-	public Player(HPBars hpb, ScoreCounter sc)
-	{
-		this.hpbars = hpb;
-		this.scoreCounter = sc;
-	}
-	
-    public void act() 
+    private GreenfootSound backgroundMusic = new GreenfootSound("Easy.wav");
+
+    int playerHealth = 3;
+    boolean direction = false;
+    boolean playBGM = true;
+    
+    World world = getWorld();
+    HPBars hpbars = null;  
+    ScoreCounter scoreCounter = null;
+    
+    public Player() {}
+    
+    public Player(HPBars hpb, ScoreCounter sc)
     {
-		playIdleAnim();
-        punch();
-        takeDamage();
+        this.hpbars = hpb;
+        this.scoreCounter = sc;
+        
         
     }
-	
-	private void punch()
-	{
-        if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
-		{
-			setImage(punchL.getCurrentImage());
-			direction = false;
+    
+    public void act() 
+    {
+        playIdleAnim();
+        punch();
+        takeDamage();
+        checkBGM();
+    }
+    
+    public void checkBGM()
+    {
+        if(playBGM == true)
+        {
+            if(Easy.class.isInstance(getWorld()) 
+            || Medium.class.isInstance(getWorld())
+            || Hard.class.isInstance(getWorld())
+            || Endless.class.isInstance(getWorld())){
+                
+                backgroundMusic.playLoop();
+                
+            }
         }
-		
-		if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
-		{
-			setImage(punchR.getCurrentImage());
-			direction = true;
-		}
-	}
-	
-	private void playIdleAnim()
-	{
-		if(!direction)
-			setImage(idleL.getCurrentImage());
-		else
-			setImage(idleR.getCurrentImage());
-	}
-	
+        else 
+        {
+            backgroundMusic.stop();
+        }
+    }
+    
+    
+    private void punch()
+    {
+        if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
+        {
+            setImage(punchL.getCurrentImage());
+            direction = false;
+        }
+        
+        if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
+        {
+            setImage(punchR.getCurrentImage());
+            direction = true;
+        }
+    }
+    
+    private void playIdleAnim()
+    {
+        if(!direction)
+            setImage(idleL.getCurrentImage());
+        else
+            setImage(idleR.getCurrentImage());
+    }
+    
     private void takeDamage()
     {
         if(isTouching(Enemy1.class)){
             playerHealth--;
             hpbars.loseHealth();            
-			scoreCounter.combobreak();
+            scoreCounter.combobreak();
         }
         
         if(isTouching(Enemy2.class)){
             playerHealth--;
             hpbars.loseHealth();
-			scoreCounter.combobreak();
+            scoreCounter.combobreak();
         }
         
-		if(isTouching(Enemy3.class))
-		{
-			playerHealth--;
-			hpbars.loseHealth();
-			
-		}
-		
-		if(isTouching(Enemy4.class))
-		{
-			playerHealth--;
-			hpbars.loseHealth();
-//			world.removeObject(enemy4);
+        if(isTouching(Enemy3.class))
+        {
+            playerHealth--;
+            hpbars.loseHealth();
+            
         }
-		
+        
+        if(isTouching(Enemy4.class))
+        {
+            playerHealth--;
+            hpbars.loseHealth();
+//          world.removeObject(enemy4);
+        }
+
         if(playerHealth == 0)
         {
-//			world.removeObject(this); // uncommenting this will crash the game.
-            Greenfoot.setWorld(new GameOver(scoreCounter.getScore()));
+//          world.removeObject(this); // uncommenting this will crash the game.
+        playBGM = false;    
+        Greenfoot.setWorld(new GameOver(scoreCounter.getScore()));
         }
     }
-	
-	public int getHealth()
-	{
-		return playerHealth;
-	}
+    
+    public int getHealth()
+    {
+        return playerHealth;
+    }
 }

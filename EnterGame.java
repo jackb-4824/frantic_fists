@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EnterGame extends World
 {
-
+    private GreenfootSound backgroundMusic = new GreenfootSound("EnterGame.wav");
+       
     public EnterGame()
     {    
         super(1200, 400, 1); 
@@ -17,13 +18,30 @@ public class EnterGame extends World
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
         
-        //GreenfootSound backgroundMusic = new GreenfootSound("BGM.wav");
-        //backgroundMusic.playLoop();
+       
+    
     }
+    
+    public void stopped(){
+        backgroundMusic.pause();
+    }
+    
+    
+    public void started(){
+        backgroundMusic.playLoop();
+    }
+    
     public void act()
     {
+        started();
+        
         if (Greenfoot.isKeyDown("Enter"))
-        Greenfoot.setWorld(new Stages());
+        {
+            backgroundMusic.stop();
+            Greenfoot.setWorld(new Stages());
+        }
+        
+        
     }
 }
 
