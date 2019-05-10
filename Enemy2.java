@@ -4,18 +4,19 @@ import greenfoot.*;
  * The glass cannon enemy.
  * 
  * @author (your name)
- * @version 0.2.0
+ * @version 0.5.0
  */
 public class Enemy2 extends Actor
 {
    	GifImage runR = new GifImage("E2RunR.gif");
-//	GifImage runL = new GifImage("E2RunL.gif");		// TODO: Fix missing asset.
+	GifImage runL = new GifImage("E2RunL.gif");
 //	GifImage hitR = new GifImage("EHitR.gif");		// This is for the hit detection. Unimplemented. Generic.
 //	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
          
     int health = 1;
 	int speed = 5;
 	boolean direction = false;
+	boolean isTouchingPlayer = false;
     boolean pauseState = false;
 	
     World world = getWorld();
@@ -41,11 +42,8 @@ public class Enemy2 extends Actor
     public void act() 
     {
         movement();
+		checkForPlayerCollision();
         takeDamage();
-		if(isTouching(Player.class))
-		{
-			fallback();
-		}
     }
     
     public void movement()
@@ -58,7 +56,7 @@ public class Enemy2 extends Actor
         else if (!pauseState & direction)
         {
             move(-speed);
-//			setImage(runL.getCurrentImage());
+			setImage(runL.getCurrentImage());
         }
         else
         {
@@ -77,6 +75,7 @@ public class Enemy2 extends Actor
 				if(player != null)
 				{
 					health--;
+					fallback();
 /*					pauseState = true;
 					int pauseCTR = 1000;
 				
@@ -101,12 +100,38 @@ public class Enemy2 extends Actor
 		}
 		
 		if(health == 0)
+		{	
+			try
+			{
+				world.removeObject(this);
+				if(enemyCounter != null)
+					enemyCounter.decrement();
+				if(enemyCounter != null)
+					scoreCounter.increment();
+			}
+			catch (NullPointerException npe)
+			{
+				/*
+					Uncomment this if you want to debug. Else, don't (terminal pops up)
+				*/
+				//System.out.println("NullPointerException: pointer to world got wiped. Resetting.");
+				world = getWorld();
+			}
+			
+		}
+	}
+	
+	private void checkForPlayerCollision()
+	{
+		if(this.isTouching(Player.class))
 		{
-			if(enemyCounter != null)
-				enemyCounter.decrement();
-			if(scoreCounter != null)
-				scoreCounter.increment();
-			world.removeObject(this);
+			if(!isTouchingPlayer)
+				isTouchingPlayer = !isTouchingPlayer;
+			else
+			{
+				fallback();
+				isTouchingPlayer = !isTouchingPlayer;
+			}	
 		}
 	}
 	

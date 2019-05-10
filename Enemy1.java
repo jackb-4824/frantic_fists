@@ -4,33 +4,33 @@ import greenfoot.*;
  * The basic enemy.
  * 
  * @author (your name) 
- * @version 0.4.0
+ * @version 0.5.0
  */
 public class Enemy1 extends Actor
 {
-    GifImage runR = new GifImage("ERunR.gif");
-    GifImage runL = new GifImage("ERunL.gif");
-//  GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
-//  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
-
-    int health = 2;
+	GifImage runR = new GifImage("ERunR.gif");
+	GifImage runL = new GifImage("ERunL.gif");
+	//GifImage hitR = new GifImage("EHit.gif");       // This is for the hit detection. Unimplemented. Generic.
+	//GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
+	
+	int health = 2;
 	int speed = 4;
-    boolean direction = false;
+	boolean direction = false;
 	boolean isTouchingPlayer = false;
-    boolean pauseState = false;
+	boolean pauseState = false;
 	
 	World world = getWorld();
-    Actor player;
+	Actor player;
 	EnemyCounter enemyCounter = null;
 	ScoreCounter scoreCounter = null;
     
-    public Enemy1(){}
+	public Enemy1(){}
 	
 	public Enemy1(boolean d, ScoreCounter sc)
-    {
+	{
         this.direction = d;
 		this.scoreCounter = sc;
-    }
+	}
 	
     public Enemy1(boolean d, EnemyCounter ec, ScoreCounter sc)
     {
@@ -102,13 +102,27 @@ public class Enemy1 extends Actor
 					}
 				}
 			}
-		} else
-		{
-			if(enemyCounter != null)
-				enemyCounter.decrement();
-			if(scoreCounter != null)
-				scoreCounter.increment();
-			world.removeObject(this);
+		}
+		
+		if(health == 0)
+		{	
+			try
+			{
+				world.removeObject(this);
+				if(enemyCounter != null)
+					enemyCounter.decrement();
+				if(enemyCounter != null)
+					scoreCounter.increment();
+			}
+			catch (NullPointerException npe)
+			{
+				/*
+					Uncomment this if you want to debug. Else, don't (terminal pops up)
+				*/
+				//System.out.println("NullPointerException: pointer to world got wiped. Resetting.");
+				world = getWorld();
+			}
+			
 		}
 	}
 	
