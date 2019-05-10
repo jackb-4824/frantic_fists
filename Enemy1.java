@@ -16,6 +16,7 @@ public class Enemy1 extends Actor
     int health = 2;
 	int speed = 4;
     boolean direction = false;
+	boolean isTouchingPlayer = false;
     boolean pauseState = false;
 	
 	World world = getWorld();
@@ -40,14 +41,11 @@ public class Enemy1 extends Actor
 	
     public void act() 
     {
-        movement();
-        takeDamage();
-		if(isTouching(Player.class))
-		{
-			fallback();
-		}
+		movement();
+		checkForPlayerCollision();
+		takeDamage();
     }
-    
+	
     private void movement()
     {
         if(!pauseState & !direction)
@@ -68,45 +66,63 @@ public class Enemy1 extends Actor
     
     private void takeDamage()
     {   
-		if(!direction)	// if facing right
+		if(health != 0)
 		{
-			player = getOneObjectAtOffset(20,0,Player.class);
-			
-			if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
+			if(!direction)	// if facing right
 			{
-				if(player != null)
+				player = getOneObjectAtOffset(50,0,Player.class);
+			
+				if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
 				{
-					health--;
-/*					pauseState = true;
-					int pauseCTR = 1000;
-				
-					while(pauseCTR > 1)
+					if(player != null)
+					{
+						health--;
+						fallback();
+/*						pauseState = true;
+						int pauseCTR = 1000;
+						
+						while(pauseCTR > 1)
 						pauseCTR--;
-				
-					pauseState = false;
-*/				}
-			}
-		}
-		else if (direction)	// if facing left
-		{
-			player = getOneObjectAtOffset(-20,0,Player.class);
-			
-			if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
-			{
-				if(player != null)
-				{
-					health--;
+						
+						pauseState = false;
+*/					}
 				}
 			}
-		}
-		
-		if(health == 0)
+			
+			else if (direction)	// if facing left
+			{
+				player = getOneObjectAtOffset(-50,0,Player.class);
+				
+				if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
+				{
+					if(player != null)
+					{
+						health--;
+						fallback();
+					}
+				}
+			}
+		} else
 		{
 			if(enemyCounter != null)
 				enemyCounter.decrement();
 			if(scoreCounter != null)
 				scoreCounter.increment();
 			world.removeObject(this);
+		}
+	}
+	
+	private void checkForPlayerCollision()
+	{
+		if(this.isTouching(Player.class))
+		{
+			if(!isTouchingPlayer)
+				isTouchingPlayer = !isTouchingPlayer;
+			else
+			{
+				fallback();
+				isTouchingPlayer = !isTouchingPlayer;
+			}	
 		}
 	}
 	
