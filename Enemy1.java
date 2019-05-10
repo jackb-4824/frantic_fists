@@ -20,10 +20,16 @@ public class Enemy1 extends Actor
 	
 	World world = getWorld();
     Actor player;
-	EnemyCounter enemyCounter;
-	ScoreCounter scoreCounter;
+	EnemyCounter enemyCounter = null;
+	ScoreCounter scoreCounter = null;
     
     public Enemy1(){}
+	
+	public Enemy1(boolean d, ScoreCounter sc)
+    {
+        this.direction = d;
+		this.scoreCounter = sc;
+    }
 	
     public Enemy1(boolean d, EnemyCounter ec, ScoreCounter sc)
     {
@@ -96,8 +102,10 @@ public class Enemy1 extends Actor
 		
 		if(health == 0)
 		{
-			enemyCounter.decrement();
-			scoreCounter.increment();
+			if(enemyCounter != null)
+				enemyCounter.decrement();
+			if(scoreCounter != null)
+				scoreCounter.increment();
 			world.removeObject(this);
 		}
 	}

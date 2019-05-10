@@ -9,26 +9,56 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy3 extends Actor
 {
     GifImage runR = new GifImage("E3RunR.gif");
-//	GifImage runL = new GifImage("E3RunL.gif");		// This is (hopefully) for the swarm spawning. Unimplemented.
+//	GifImage runL = new GifImage("E3RunL.gif");		// TODO: Fix missing asset
 //	GifImage hitR = new GifImage("EHitR.gif");		// This is for the hit detection. Unimplemented. Generic.
 //	GifImage hitL = new GifImage("EHitL.gif"); 		// This is for the hit detection. Unimplemented. Generic.
-         
+	
     int health = 2;
-//	boolean direction = false;
+	int speed = 2;
+	boolean direction = false;
     boolean pauseState = false;
-    
+
+    World world = getWorld();
+    Actor player;
+	EnemyCounter enemyCounter = null;
+	ScoreCounter scoreCounter = null;
+	
+	public Enemy3(){}
+	
+	public Enemy3(boolean d, ScoreCounter sc)
+    {
+        this.direction = d;
+		this.scoreCounter = sc;
+    }
+	
+	public Enemy3(boolean d, EnemyCounter ec, ScoreCounter sc)
+    {
+        this.direction = d;
+		this.enemyCounter = ec;
+		this.scoreCounter = sc;
+    }
+	
     public void act() 
     {
         movement();
-        takeDamage();       
-        setImage(runR.getCurrentImage());
+        takeDamage();
+		if(isTouching(Player.class))
+		{
+			fallback();
+		}
     }
     
     public void movement()
     {
-        if(pauseState == false)
+        if(!pauseState & !direction)
         {
-            move(4);
+            move(speed);
+            setImage(runR.getCurrentImage());
+        }
+        else if (!pauseState & direction)
+        {
+            move(-speed);
+//			setImage(runL.getCurrentImage());
         }
         else
         {
@@ -37,36 +67,54 @@ public class Enemy3 extends Actor
     }
 	
     public void takeDamage()
-    {
-        int currentX = getX();
-        
-        Actor player;
-        
-        World world;
-        world = getWorld();
-        
-        player = getOneObjectAtOffset(10,0,Player.class);
-        
-        if(Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("a")){
-            if(player != null){
-                health--;
-                this.setLocation(currentX +400,275);
-            
-                pauseState = true;
-                int pauseCTR = 1000;
-                
-                while(pauseCTR > 1)
-                {
-                    pauseCTR--;
-             
-                }
-                pauseState = false;
-                
-                if(health == 0)
-                {
-                    world.removeObject(this);
-                }
-            }
-        } 
-    }
+	{   
+		if(!direction)	// if facing right
+		{
+			player = getOneObjectAtOffset(20,0,Player.class);
+			
+			if(Greenfoot.isKeyDown("left") | Greenfoot.isKeyDown("a"))
+			{
+				if(player != null)
+				{
+					health--;
+/*					pauseState = true;
+					int pauseCTR = 1000;
+				
+					while(pauseCTR > 1)
+						pauseCTR--;
+				
+					pauseState = false;
+*/				}
+			}
+		}
+		else if (direction)	// if facing left
+		{
+			player = getOneObjectAtOffset(-20,0,Player.class);
+			
+			if(Greenfoot.isKeyDown("right") | Greenfoot.isKeyDown("d"))
+			{
+				if(player != null)
+				{
+					health--;
+				}
+			}
+		}
+		
+		if(health == 0)
+		{
+			if(enemyCounter != null)
+				enemyCounter.decrement();
+			if(scoreCounter != null)
+				scoreCounter.increment();
+			world.removeObject(this);
+		}
+	}
+	
+	private void fallback()
+	{
+		if (!direction)
+			this.setLocation(getX()-200,275);
+		else if (direction)
+			this.setLocation(getX()+200,275);
+	}
 }
