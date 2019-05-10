@@ -19,10 +19,7 @@ public class EnterGame extends World
         
         //GreenfootSound backgroundMusic = new GreenfootSound("BGM.wav");
         //backgroundMusic.playLoop();
-        
-        prepare();
     }
-    private void prepare() {}
     public void act()
     {
         if (Greenfoot.isKeyDown("Enter"))

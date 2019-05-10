@@ -21,17 +21,9 @@ public class Congratulations extends World
         GreenfootImage bg = new GreenfootImage("Congratulations.png");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
-        
-            prepare();
     }
        
-    private void prepare()
-    {
-        Winner winner = new Winner();
-        addObject(winner,363,154);
-
-        
-    }
+    private void prepare(){}
     
     public void act()
     {

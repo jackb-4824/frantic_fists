@@ -33,10 +33,7 @@ public class HELPMe extends World
         GreenfootImage staticE2 = new GreenfootImage("BlueRunStatic.png");
         GreenfootImage staticE3 = new GreenfootImage("PurpleRunStatic.png");
         GreenfootImage staticE4 = new GreenfootImage("GreenRunStatic.png");
-
-        Winner winner = new Winner();
-        addObject(winner,363,154);
-
+        
         getBackground().drawImage(PstaticL, 70, 18);
         getBackground().drawImage(PstaticR, 270, 18);
         
@@ -48,9 +45,6 @@ public class HELPMe extends World
     
     public void act()
     {
-        if (Greenfoot.isKeyDown("right"))
-        Greenfoot.setWorld(new HELPMe2());
-        
          if (Greenfoot.isKeyDown("backspace"))
         Greenfoot.setWorld(new Stages());
         

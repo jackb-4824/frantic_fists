@@ -20,19 +20,6 @@ public class Stages extends World
         GreenfootImage bg = new GreenfootImage("LevelSelect.PNG");
         bg.scale(getWidth(), getHeight());
         setBackground(bg);
-        
-        prepare();
-    }
-    
-    private void prepare()
-    {
-        Start start = new Start();
-        addObject(start,363,154);
-
-        Enemy3 enemy3 = new Enemy3();
-        addObject(enemy3,58,330);
-        removeObject(enemy3);
-        start.setLocation(1189,387);
     }
     
     public void act()
