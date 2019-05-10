@@ -1,10 +1,10 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
  * The basic enemy.
  * 
  * @author (your name) 
- * @version 0.1.0
+ * @version 0.4.0
  */
 public class Enemy1 extends Actor
 {
@@ -14,21 +14,22 @@ public class Enemy1 extends Actor
 //  GifImage hitL = new GifImage("EHitL.gif");      // This is for the hit detection. Unimplemented. Generic.
 
     int health = 2;
-    boolean direction = false;d
+	int speed = 4;
+    boolean direction = false;
     boolean pauseState = false;
+	
 	World world = getWorld();
     Actor player;
-	SCounter sCounter;
-  SCCounter scCounter;  //TODO: FIX AND ADD TO CONSTRUCTOR REQUIREMENTS
+	EnemyCounter enemyCounter;
+	ScoreCounter scoreCounter;
     
-    public Enemy1(){
-    }
+    public Enemy1(){}
 	
-    public Enemy1(boolean d, SCounter sc)
+    public Enemy1(boolean d, EnemyCounter ec, ScoreCounter sc)
     {
         this.direction = d;
-		this.sCounter = sc;
-    //SON OF A BITCH AAAA SCCOUNTER SCCOUNTER = SUCC;
+		this.enemyCounter = ec;
+		this.scoreCounter = sc;
     }
 	
     public void act() 
@@ -36,19 +37,21 @@ public class Enemy1 extends Actor
         movement();
         takeDamage();
 		if(isTouching(Player.class))
-			fallback();     
+		{
+			fallback();
+		}
     }
     
     private void movement()
     {
         if(!pauseState & !direction)
         {
-            move(4);
+            move(speed);
             setImage(runR.getCurrentImage());
         }
         else if (!pauseState & direction)
         {
-            move(-4);
+            move(-speed);
             setImage(runL.getCurrentImage());
         }
         else
@@ -93,8 +96,8 @@ public class Enemy1 extends Actor
 		
 		if(health == 0)
 		{
-			sCounter.removeScore();
-      scCounter.addScore();     //TODO: PLEASE FIX AND IMPLEMENT
+			enemyCounter.decrement();
+			scoreCounter.increment();
 			world.removeObject(this);
 		}
 	}
