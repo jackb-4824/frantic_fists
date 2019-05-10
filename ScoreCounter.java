@@ -1,12 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SCCounter here.
+ * ScoreCounter is a HUD element for the player's score. Also has internal combo mechanics.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kyle 
+ * @version 0.1.0
  */
-public class SCCounter extends Actor
+public class ScoreCounter extends Actor
 {
     int score = 0;
     int combo = 0;
