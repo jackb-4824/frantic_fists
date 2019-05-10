@@ -17,6 +17,7 @@ public class Enemy4 extends Actor
 	int speed = 2;
 	int pauseCTR = 0;
 	boolean direction = false;
+	boolean isTouchingPlayer = false;
 	boolean pauseState = false;
     
 	World world = getWorld();
@@ -158,6 +159,6 @@ public class Enemy4 extends Actor
 		else if (direction)
 			this.setLocation(200,275);
 		
-		direction = !detection
+		direction = !direction;
 	}
 }

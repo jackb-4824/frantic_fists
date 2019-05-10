@@ -35,4 +35,8 @@ public class ScoreCounter extends Actor
         combo=0;
         addtoscore = 10;
     }
+    public int returnScore()
+    {
+        return score;
+    }
 }
