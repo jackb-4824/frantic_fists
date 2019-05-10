@@ -8,10 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Easy extends World
 {
-	HPBars hpbars = new HPBars();
-	Player player = new Player(hpbars);
-    EnemyCounter enemyCounter = new EnemyCounter();
+	EnemyCounter enemyCounter = new EnemyCounter();
     ScoreCounter scoreCounter = new ScoreCounter();
+	HPBars hpbars = new HPBars();
+	Player player = new Player(hpbars, scoreCounter);
+
 	
     /**
      * Constructor for objects of class Easy.
@@ -38,7 +39,7 @@ public class Easy extends World
         {
             if (getObjects(Enemy1.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
 					addObject(new Enemy1(false, enemyCounter, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy1(true, enemyCounter, scoreCounter), 1199, 275);
@@ -49,7 +50,7 @@ public class Easy extends World
         {
             if (getObjects(Enemy2.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
 					addObject(new Enemy2(false, enemyCounter, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy2(true, enemyCounter, scoreCounter), 1199, 275);

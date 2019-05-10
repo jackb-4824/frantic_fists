@@ -2,10 +2,10 @@ import greenfoot.*;
 
 public class qasmoke extends World
 {
-	HPBars hpbars = new HPBars();
-	Player player = new Player(hpbars);
-	EnemyCounter enemyCounter = new EnemyCounter();
+	EnemyCounter enemyCounter = new EnemyCounter(1000);
 	ScoreCounter scoreCounter = new ScoreCounter();
+	HPBars hpbars = new HPBars();
+	Player player = new Player(hpbars, scoreCounter);
 	
 	private int playerHealthAsOfPreviousTick = 0;
 	private boolean spawningEnabled = false;
@@ -23,7 +23,14 @@ public class qasmoke extends World
 		addObject(player, 600, 275);
 		playerHealthAsOfPreviousTick = player.getHealth();
 		addObject(hpbars, 200, 40);
-		addObject(enemyCounter, 999, 54);
+		
+        GreenfootImage scoreImage = new GreenfootImage("Score.png");
+        GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG");
+		
+		getBackground().drawImage(ERImage, 900, 32);
+        addObject(enemyCounter,1035,71);
+        getBackground().drawImage(scoreImage, 700, 32);
+        addObject(scoreCounter,768,68); 
 	}
 	
 	public void act()
@@ -66,6 +73,14 @@ public class qasmoke extends World
 			if(preferredDirection)
 				addObject(new Enemy2(preferredDirection, enemyCounter, scoreCounter), 1199, 275);
 		}
+		
+		if(Greenfoot.isKeyDown("3"))
+		{
+			if(!preferredDirection)
+				addObject(new Enemy3(preferredDirection, enemyCounter, scoreCounter), 0, 275);
+			if(preferredDirection)
+				addObject(new Enemy3(preferredDirection, enemyCounter, scoreCounter), 1199, 275);
+		}
 		// TODO: Implement functionality to just press keys to manually force a guaranteed spawn
 	}
 	
@@ -75,7 +90,7 @@ public class qasmoke extends World
         {
             if (getObjects(Enemy1.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
                 	addObject(new Enemy1(false, enemyCounter, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy1(true, enemyCounter, scoreCounter), 1199, 275);
@@ -86,7 +101,7 @@ public class qasmoke extends World
         {
             if (getObjects(Enemy2.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
                 	addObject(new Enemy2(false, enemyCounter, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy2(true, enemyCounter, scoreCounter), 1199, 275);

@@ -8,10 +8,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Endless extends World
 {
-	HPBars hpbars = new HPBars();
-    Player player = new Player(hpbars);
 //	EnemyCounter enemyCounter = new EnemyCounter(); This is endless. No enemy counter necessary!
 	ScoreCounter scoreCounter = new ScoreCounter();
+	HPBars hpbars = new HPBars();
+    Player player = new Player(hpbars, scoreCounter);
+
 	
     /**
      * Constructor for objects of class Endless.
@@ -38,7 +39,7 @@ public class Endless extends World
         {
             if (getObjects(Enemy1.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
 					addObject(new Enemy1(false, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy1(true, scoreCounter), 1199, 275);
@@ -49,7 +50,7 @@ public class Endless extends World
         {
             if (getObjects(Enemy2.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
 					addObject(new Enemy2(false, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy2(true, scoreCounter), 1199, 275);
@@ -59,7 +60,7 @@ public class Endless extends World
         {
             if (getObjects(Enemy3.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
 					addObject(new Enemy3(false, scoreCounter), 0, 275);
 				else
 					addObject(new Enemy3(true, scoreCounter), 1199, 275);
@@ -69,7 +70,7 @@ public class Endless extends World
 		{
 			if (getObjects(Enemy4.class).size() < 10)
 			{
-				if(Greenfoot.getRandomNumber(1) == 0)
+				if(Greenfoot.getRandomNumber(2) == 0)
 					; // remove this when uncommenting
 //					addObject(new Enemy4(false, scoreCounter), 0, 275);
 				else
