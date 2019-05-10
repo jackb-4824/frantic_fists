@@ -52,8 +52,10 @@ public class Stages extends World
             Greenfoot.setWorld(new Endless());
         }
         if (Greenfoot.isKeyDown("5"))
-        Greenfoot.setWorld(new HELPMe());
-        
+        {
+            backgroundMusic.stop();
+            Greenfoot.setWorld(new HELPMe());
+        }
         //if (Greenfoot.isKeyDown("0"))
         //Greenfoot.setWorld(new qasmoke());
     }
