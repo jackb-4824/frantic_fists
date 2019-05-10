@@ -71,11 +71,9 @@ public class Endless extends World
 			if (getObjects(Enemy4.class).size() < 10)
 			{
 				if(Greenfoot.getRandomNumber(2) == 0)
-					; // remove this when uncommenting
-//					addObject(new Enemy4(false, scoreCounter), 0, 275);
+					addObject(new Enemy4(false, scoreCounter), 0, 275);
 				else
-					; // remove this when uncommenting
-//					addObject(new Enemy4(true, scoreCounter), 1199, 275);
+					addObject(new Enemy4(true, scoreCounter), 1199, 275);
 			}
 		}
     }

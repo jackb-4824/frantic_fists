@@ -81,7 +81,14 @@ public class qasmoke extends World
 			if(preferredDirection)
 				addObject(new Enemy3(preferredDirection, enemyCounter, scoreCounter), 1199, 275);
 		}
-		// TODO: Implement functionality to just press keys to manually force a guaranteed spawn
+		
+		if(Greenfoot.isKeyDown("4"))
+		{
+			if(!preferredDirection)
+				addObject(new Enemy4(preferredDirection, enemyCounter, scoreCounter), 0, 275);
+			if(preferredDirection)
+				addObject(new Enemy4(preferredDirection, enemyCounter, scoreCounter), 1199, 275);
+		}
 	}
 	
     public void spawn()
@@ -91,38 +98,42 @@ public class qasmoke extends World
             if (getObjects(Enemy1.class).size() < 10)
 			{
 				if(Greenfoot.getRandomNumber(2) == 0)
-                	addObject(new Enemy1(false, enemyCounter, scoreCounter), 0, 275);
+					addObject(new Enemy1(false, scoreCounter), 0, 275);
 				else
-					addObject(new Enemy1(true, enemyCounter, scoreCounter), 1199, 275);
+					addObject(new Enemy1(true, scoreCounter), 1199, 275);
             }
         }
         
-        if (Greenfoot.getRandomNumber(1000) <= 5) 
+        if (Greenfoot.getRandomNumber(1000) < 5) 
         {
             if (getObjects(Enemy2.class).size() < 10)
 			{
 				if(Greenfoot.getRandomNumber(2) == 0)
-                	addObject(new Enemy2(false, enemyCounter, scoreCounter), 0, 275);
+					addObject(new Enemy2(false, scoreCounter), 0, 275);
 				else
-					addObject(new Enemy2(true, enemyCounter, scoreCounter), 1199, 275);
+					addObject(new Enemy2(true, scoreCounter), 1199, 275);
             }
         }
-        
-        if (Greenfoot.getRandomNumber(1000) <= 3) 
+        if (Greenfoot.getRandomNumber(1000) < 3) 
         {
-            if (getObjects(Enemy3.class).size() < 10) {  
-                addObject(new Enemy3(), 0, 275);  
+            if (getObjects(Enemy3.class).size() < 10)
+			{
+				if(Greenfoot.getRandomNumber(2) == 0)
+					addObject(new Enemy3(false, scoreCounter), 0, 275);
+				else
+					addObject(new Enemy3(true, scoreCounter), 1199, 275);
             }
         }
-        
-        if (Greenfoot.getRandomNumber(1000) == 1) 
-        {
-            if (getObjects(Enemy4.class).size() < 10) {  
-                addObject(new Enemy4(), 0, 275);  
-                //addObject(new Enemy1(), 0, 275);  
-            }
-        }
-        
+        if (Greenfoot.getRandomNumber(1000) < 1)
+		{
+			if (getObjects(Enemy4.class).size() < 10)
+			{
+				if(Greenfoot.getRandomNumber(2) == 0)
+					addObject(new Enemy4(false, scoreCounter), 0, 275);
+				else
+					addObject(new Enemy4(true, scoreCounter), 1199, 275);
+			}
+		}
     }
 	
 //	The following are probably vestigial. (as of 2019-05-10)
