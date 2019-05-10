@@ -53,7 +53,7 @@ public class Player extends Actor
             playerHealth--;
             hpbars.loseHealth();            
 //			world.removeObject(enemy1);
-            obj.combobreak();
+//            obj.combobreak();
         }
         
         if(isTouching(Enemy2.class)){
