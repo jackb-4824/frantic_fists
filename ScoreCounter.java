@@ -11,10 +11,14 @@ public class ScoreCounter extends Actor
     int score = 0;
     int combo = 0;
     int addtoscore = 10;
-    /**
-     * Act - do whatever the SCCounter wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+	 
+	public ScoreCounter() {}
+	
+	public ScoreCounter(int i)
+	{
+		this.score = i;
+	}
+	
     public void act() 
     {
        setImage(new GreenfootImage("" + score, 24, Color.WHITE, null));
@@ -35,7 +39,7 @@ public class ScoreCounter extends Actor
         combo=0;
         addtoscore = 10;
     }
-    public int returnScore()
+    public int getScore()
     {
         return score;
     }

@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Endless extends World
 {
-//	EnemyCounter enemyCounter = new EnemyCounter(); This is endless. No enemy counter necessary!
 	ScoreCounter scoreCounter = new ScoreCounter();
+//	EnemyCounter enemyCounter = new EnemyCounter(); This is endless. No enemy counter necessary!
 	HPBars hpbars = new HPBars();
     Player player = new Player(hpbars, scoreCounter);
 

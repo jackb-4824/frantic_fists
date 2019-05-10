@@ -94,7 +94,7 @@ public class Player extends Actor
         if(playerHealth == 0)
         {
 //			world.removeObject(this); // uncommenting this will crash the game.
-            Greenfoot.setWorld(new GameOver());
+            Greenfoot.setWorld(new GameOver(scoreCounter.getScore()));
         }
     }
 	

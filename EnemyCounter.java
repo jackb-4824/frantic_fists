@@ -11,9 +11,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class EnemyCounter extends Actor
 {  
     int EnemiesLeft = 20;
+	ScoreCounter scoreCounter = new ScoreCounter();
 	
 	public EnemyCounter()
 	{}
+	
+	public EnemyCounter(int el, ScoreCounter sc)
+	{
+		this.EnemiesLeft = el;
+		this.scoreCounter = sc;
+	}
+	
+	public EnemyCounter(ScoreCounter sc)
+	{
+		this.scoreCounter = sc;
+	}
 	
 	public EnemyCounter(int el)
 	{
@@ -27,7 +39,7 @@ public class EnemyCounter extends Actor
         
         if(EnemiesLeft == 0)
         {
-            Greenfoot.setWorld(new Congratulations());
+            Greenfoot.setWorld(new Congratulations(scoreCounter.getScore()));
         }
         
     }    

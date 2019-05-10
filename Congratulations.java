@@ -8,22 +8,34 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Congratulations extends World
 {
-
-    /**
-     * Constructor for objects of class Congratulations.
-     * 
-     */
+	int finalScore = 0;
+	ScoreCounter scoreCounter = null;
     public Congratulations()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1);
-        
-        GreenfootImage bg = new GreenfootImage("Congratulations.png");
-        bg.scale(getWidth(), getHeight());
-        setBackground(bg);
+        prepare();
     }
-       
-    private void prepare(){}
+    
+	public Congratulations(int i)
+	{
+		super(1200, 400, 1);
+		this.finalScore = i;
+		prepare();
+	}
+	
+    public void prepare()
+	{
+	    	GreenfootImage bg = new GreenfootImage("Congratulations.png");
+		bg.scale(getWidth(), getHeight());
+		setBackground(bg);
+		
+		if (finalScore != 0)
+			scoreCounter = new ScoreCounter(finalScore);
+		else
+			scoreCounter = new ScoreCounter();
+		
+		addObject(scoreCounter, 580, 250);
+	}
     
     public void act()
     {

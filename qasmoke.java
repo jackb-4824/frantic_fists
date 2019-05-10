@@ -2,8 +2,8 @@ import greenfoot.*;
 
 public class qasmoke extends World
 {
-	EnemyCounter enemyCounter = new EnemyCounter(1000);
 	ScoreCounter scoreCounter = new ScoreCounter();
+	EnemyCounter enemyCounter = new EnemyCounter(1000, scoreCounter);
 	HPBars hpbars = new HPBars();
 	Player player = new Player(hpbars, scoreCounter);
 	

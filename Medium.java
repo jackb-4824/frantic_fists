@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Medium extends World
 {
-	EnemyCounter enemyCounter = new EnemyCounter();
 	ScoreCounter scoreCounter = new ScoreCounter();
+	EnemyCounter enemyCounter = new EnemyCounter(scoreCounter);
 	HPBars hpbars = new HPBars();
 	Player player = new Player(hpbars, scoreCounter);
 
