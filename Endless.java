@@ -8,16 +8,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Endless extends World
 {
-    SCounter sCounter = new SCounter();
-    HPBars hpbars = new HPBars();
+	HPBars hpbars = new HPBars();
+    Player player = new Player(hpbars);
+//	EnemyCounter enemyCounter = new EnemyCounter(); This is endless. No enemy counter necessary!
+	ScoreCounter scoreCounter = new ScoreCounter();
+	
     /**
      * Constructor for objects of class Endless.
      * 
      */
     public Endless()
-    {    
-        
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+    {
         super(1200, 400, 1);
         GreenfootImage bg = new GreenfootImage("TestBG.png");
         bg.scale(getWidth(), getHeight());
@@ -25,17 +26,6 @@ public class Endless extends World
         
         prepare();
     }
-    
-    public SCounter getCounter()
-    {
-        return sCounter;
-    }
-    
-    public HPBars getHPBars()
-    {
-        return hpbars;
-    }
-    
     
     public void act()
     {
@@ -46,24 +36,47 @@ public class Endless extends World
     {
         if (Greenfoot.getRandomNumber(1000) < 10) 
         {
-            if (getObjects(Enemy1.class).size() < 10) {  
-                addObject(new Enemy1(), 0, 275);  
+            if (getObjects(Enemy1.class).size() < 10)
+			{
+				if(Greenfoot.getRandomNumber(1) == 0)
+					addObject(new Enemy1(false, scoreCounter), 0, 275);
+				else
+					addObject(new Enemy1(true, scoreCounter), 1199, 275);
             }
         }
         
         if (Greenfoot.getRandomNumber(1000) < 5) 
         {
-            if (getObjects(Enemy2.class).size() < 10) {  
-                //addObject(new Enemy2(), 0, 275);  
+            if (getObjects(Enemy2.class).size() < 10)
+			{
+				if(Greenfoot.getRandomNumber(1) == 0)
+					addObject(new Enemy2(false, scoreCounter), 0, 275);
+				else
+					addObject(new Enemy2(true, scoreCounter), 1199, 275);
             }
         }
         if (Greenfoot.getRandomNumber(1000) < 3) 
         {
-            if (getObjects(Enemy3.class).size() < 10) {  
-                //addObject(new Enemy3(), 0, 275);  
+            if (getObjects(Enemy3.class).size() < 10)
+			{
+				if(Greenfoot.getRandomNumber(1) == 0)
+					addObject(new Enemy3(false, scoreCounter), 0, 275);
+				else
+					addObject(new Enemy3(true, scoreCounter), 1199, 275);
             }
         }
-        
+        if (Greenfoot.getRandomNumber(1000) < 1)
+		{
+			if (getObjects(Enemy4.class).size() < 10)
+			{
+				if(Greenfoot.getRandomNumber(1) == 0)
+					; // remove this when uncommenting
+//					addObject(new Enemy4(false, scoreCounter), 0, 275);
+				else
+					; // remove this when uncommenting
+//					addObject(new Enemy4(true, scoreCounter), 1199, 275);
+			}
+		}
     }
 
     /**
@@ -72,14 +85,33 @@ public class Endless extends World
      */
     private void prepare()
     {
-        
-        Player player = new Player(hpbars);
-        addObject(player,600,275);
-        addObject(hpbars, 200, 40);
-
-        //addObject(playerHealth,477,199);
-        //addObject(enemiesLeft,999,54);
-       
-        addObject(sCounter,996,32);
+		GreenfootImage scoreImage = new GreenfootImage("Score.png");
+//		GreenfootImage ERImage = new GreenfootImage("EnemiesRemaining.PNG"); 	No enemy counter on Endless.
+		
+		addObject(player,600,275);
+		addObject(hpbars, 200, 40);
+		
+//		getBackground().drawImage(ERImage, 900, 32);							No enemy counter on Endless.
+//		addObject(enemyCounter,1035,71);										No enemy counter on Endless.
+		
+		getBackground().drawImage(scoreImage, 700, 32);
+		addObject(scoreCounter,768,68);
     }
+	
+	//	The following are probably vestigial. (as of 2019-05-10)
+/*	No enemy counter on Endless.
+	public EnemyCounter getEC()
+	{
+		return enemyCounter;
+	}
+*/	
+	public ScoreCounter getSC()
+	{
+		return scoreCounter;
+	}
+	
+	public HPBars getHPBars()
+	{
+		return hpbars;
+	}
 }
