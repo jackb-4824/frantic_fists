@@ -122,7 +122,7 @@ public class Enemy1 extends Actor
                 world.removeObject(this);
                 if(enemyCounter != null)
                     enemyCounter.decrement();
-                if(enemyCounter != null)
+                if(scoreCounter != null)
                     scoreCounter.increment();
             }
             catch (NullPointerException npe)

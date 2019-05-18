@@ -25,11 +25,11 @@ public class ScoreCounter extends Actor
     }    
     public void increment()
     {
-        score=score+addtoscore;
+        score += addtoscore;
         combo++;
         if(combo > 4)
         {
-            addtoscore = addtoscore +10;
+            addtoscore += 10;
             combo=0;
         }
    
